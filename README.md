@@ -3,7 +3,7 @@
 
 Use this repo to start a new project. 
 
-You lickely want to download and not clone or fork. Then you can `git init` and start a new repo. 
+You likely want to **download** and not clone or fork. Then you can `git init` and start a new repo. 
 
 ![Download project](tmp/gitlab-download.png)
 
