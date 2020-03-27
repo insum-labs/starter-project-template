@@ -79,11 +79,13 @@ PRO _________________________________________________
 PRO . DML
 
 
+-- AUTOREPLACE_START
 
+-- AUTOREPLACE_END
 
 PRO _________________________________________________
-prompt COMPILE INVALID OBJECTS
-prompt *********************************
+PRO COMPILE INVALID OBJECTS
+PRO *********************************
 exec dbms_utility.compile_schema(schema => user, compile_all => false);
 
 
