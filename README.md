@@ -14,15 +14,33 @@ Follow the steps below to configure and initialize.
 
 * Run `cd scripts; sh config.sh` (or `config.bat`)
 * Setup `app/_ins.sql` with the correct Workspace & App Number
-* Generate for your `release.sql` script [ASCII Art](https://asciiartgen.now.sh/?style=standard)
+* Decide if your project will use a static or dynamic template `_release_template_static.sql` or `_release_template_dynamic.sql`.  You could optionally delete one of them.
+* Generate for your `_release.sql` script [ASCII Art](https://asciiartgen.now.sh/?style=standard)
 * Optionally remove directories that won't apply (ie. conversion)
 
 ## Getting Started
 
 Start a new release:
+* Run commands like the following depending on a static or dynamic release
+
+```
+rm ../release/[a-z]*.sql
+cp ../release/_release_template_static.sql.sql ../release/_release.sql
+```
+
+
+```
+rm ../release/[a-z]*.sql
+cp ../release/_release_template_dynamic.sql.sql ../release/_release.sql
+```
+
+
+* Optionally modify `script/new.sh` as needed
+
 ```
 sh scripts/new.sh
 ```
+
 
 ## Folder Structure
 
@@ -75,7 +93,7 @@ Example:
 # Go to releases folder in trunk/master of current SVN/Git project
 cd releases
 
-node release.js release_01.sql
+node release.js _release.sql
 ```
 
 This application can be run multiple times as it keeps the substitution strings.
