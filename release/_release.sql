@@ -32,55 +32,24 @@ SET serveroutput on
 
 define logname                      =''     -- Name of the log file
 
---  Start The logging 
---  ============================================= 
+--  Start The logging
+--  =============================================
 set termout off
-column my_logname new_val logname 
+column my_logname new_val logname
 select 'release_log_'||sys_context( 'userenv', 'service_name' )|| '_' || to_char(sysdate, 'YYYY-MM-DD_HH24-MI-SS')||'.log' my_logname from dual;
 -- good to clear column names when done with them
-column my_logname    clear  
+column my_logname    clear
 set termout on
 spool ^logname
 
 PRO  ============================   App  Update  ==========================
-PRO  == Version: v0.01.0
+PRO  == Version: v1.0.0
 PRO  ============================= Installation ===========================
 PRO
 
 PRO  Log File                 = ^logname
 
-
-PRO _________________________________________________
-PRO . TABLES
-
-
-
-PRO _________________________________________________
-PRO . VIEW
-
-
-
-PRO _________________________________________________
-PRO . PACKAGES
-
-
-
-PRO _________________________________________________
-PRO . SECURE VIEWS
-
-
-
-PRO _________________________________________________
-PRO . TRIGGERS
-
-
-
-PRO _________________________________________________
-PRO . DML
-
-
 -- AUTOREPLACE_START
-
 -- AUTOREPLACE_END
 
 PRO _________________________________________________
