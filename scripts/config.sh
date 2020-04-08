@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-# Remove all the .deleteme files
-find .. -name ".deleteme" -exec rm -f {} \;
+# Remove all the .gitkeep files
+# find .. -name ".gitkeep" -exec rm -f {} \;
 
 # Add bin, tmp to the .gitignore
 echo "bin" >> ../.gitignore
