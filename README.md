@@ -48,8 +48,7 @@ sh scripts/new.sh
 |:--|--|
 | apex | Application exports
 | bin | Binary files, executable scripts, Sublime/VSC specific files 
-| conversion | Conversion and/or seed data scripts
-| data | Seed data scripts
+| data | Conversion and seed data scripts
 | docs | Project documents 
 | install | Installation scripts of none code objects like tables, types, and indexes.
 | lib | Installation libraries (OSS, Logger, etc..)
