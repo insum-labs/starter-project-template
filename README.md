@@ -66,11 +66,11 @@ sh scripts/new.sh
 
 ## Release Autocomplete
 
-_Note: This script was developed intnerally by Insum Solutions_
+_Note: This script was developed by [Insum Solutions](https://insum.ca)._
 
 **Status: POC**
 
-This node.js application will automatically add files in the `views` and `packages` directory into a release file.
+The release.js file is node.js application will automatically add files in the defined directories (like `views`, `packages`, `triggers`) into a release file.  Adjust the `releaseObjects` JSON structure to match your needs. The directories will be processed in order thus allowing for the correct resolution of dependencies.
 
 ### Release File Configuration
 
