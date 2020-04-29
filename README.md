@@ -1,9 +1,12 @@
 
 # Starter Project Template
 
-Use this repo to start a new project. 
+Use this repo to start a new project.
 
-You likely want to **download** and not clone or fork. Then you can `git init` and start a new repo. 
+In Github simply click the "Use this template" button.
+![Use this template](tmp/Use_this_template.png)
+
+Otherwise, you will likely want to **download** and not clone or fork. Then you can `git init` and start a new repo. 
 
 ![Download project](tmp/gitlab-download.png)
 
