@@ -4,8 +4,8 @@ bin
 node_modules
 www/dist
 
-# Logs
 logs
 *.log
 *.map
 /www/dist/css/app.css.map
+apexcl.config.json
