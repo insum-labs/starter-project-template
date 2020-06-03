@@ -14,21 +14,21 @@
 --    
 --
 
-CLEAR SCREEN
+clear screen
 
 -- Terminate the script on Error during the beginning
 whenever sqlerror exit
 
 --  define - Sets the character used to prefix substitution variables
-SET define '^'
+set define '^'
 --  verify off prevents the old/new substitution message
-SET verify off
+set verify off
 --  feedback - Displays the number of records returned by a script ON=1
-SET feedback off
+set feedback off
 --  timing - Displays the time that commands take to complete
-SET timing off
+set timing off
 --  display dbms_output messages
-SET serveroutput on
+set serveroutput on
 
 define logname                      =''     -- Name of the log file
 
