@@ -3,7 +3,7 @@
 This folder contains scripts to help build a release
 
 - [Files](#files)
-  - [`apex_export_app.sql](#apex_export_appsql)
+  - [`apex_export_app.sql`](#apex_export_appsql)
 
 ## Files
 
@@ -12,7 +12,7 @@ File | Description
 `apex_export_app.sql` | Exports an APEX application using [SQLcl](https://www.oracle.com/ca-en/database/technologies/appdev/sqlcl.html)
 
 
-### `apex_export_app.sql
+### `apex_export_app.sql`
 
 ```bash
 # DB_CONN is the connection string for SQLcl to connect to your database.
