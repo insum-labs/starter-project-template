@@ -26,8 +26,8 @@ Examples:
 
 ```bash
 # Export to f100.sql
-echo exit | sqlcl giffy/giffy@localhost:32118/xe @apex_export_app.sql 100
+echo exit | sqlcl martin/password123@localhost:32118/xe @apex_export_app.sql 100
 
 # Export to Application 100 as split files
-echo exit | sqlcl giffy/giffy@localhost:32118/xe @apex_export_app.sql 100 -split
+echo exit | sqlcl martin/password123@localhost:32118/xe @apex_export_app.sql 100 -split
 ```
