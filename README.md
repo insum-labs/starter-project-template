@@ -18,7 +18,6 @@ In Github simply click the [`Use this template`](https://github.com/insum-labs/s
 
 ## Setup
 
-* Run `cd scripts; sh config.sh` (or `config.bat`)
 * Setup `apex/_ins.sql` with the correct Workspace & App Number
 * Decide if your project will use a static or dynamic template `_release_template_static.sql` or `_release_template_dynamic.sql`.  You could optionally delete one of them.
 * Generate for your `_release.sql` script [ASCII Art](https://asciiartgen.now.sh/?style=standard)
@@ -50,7 +49,7 @@ sh scripts/new.sh
 
 ## Folder Structure
 
-The default folder structure (listed below) is their to provide a base level of folders that most projects will use. You're encouraged to add new folders to your projects where necessary. For example if you have ORDS scripts you may want to create a root folder called `ords` to store them.
+The default folder structure (listed below) provides a set of common folders most projects will use. You're encouraged to add new folders to your projects where necessary. For example if you have ORDS scripts you may want to create a root folder called `ords` to store them.
 
 | Folder | Description |
 |:--|--|
@@ -60,7 +59,7 @@ The default folder structure (listed below) is their to provide a base level of 
 | lib | Installation libraries (OSS, Logger, etc..)
 | release | Current release scripts for changes and patching
 | scripts | Usually re-runable scripts referenced by a release script
-| packages | Packages (`.pls` & `.plb` or `.pks` & `.pkb`), triggers (not audit triggers) or sometimes stand alone procedures and functions.
+| packages | Packages (`.pls` & `.plb` or `.pks` & `.pkb`), (*If you have triggers, stand alone procedures or functions it's recommend to create a new folder for them*)
 | synonyms | Application Synonyms
 | triggers | Application Triggers
 | views | Application views
