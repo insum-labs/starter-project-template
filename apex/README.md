@@ -2,7 +2,14 @@
 
 By default the build script included in this project will do some "extra" things for your APEX applications. 
 
+- [Summary](#summary)
 - [App Version](#app-version)
+
+## Summary
+
+Provides a brief summary of all changes you'll need to make in your APEX application to take advantage of all the features that build script provides:
+
+1. Go to `Application Properties > Version` and set to `Release %RELEASE_VERSION%` (or whatever text your want but `%RELEASE_VERSION%` will be the version number)
 
 
 ## App Version
