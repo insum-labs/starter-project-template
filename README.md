@@ -1,10 +1,19 @@
 
 # Starter Project Template
 
-Use this repo to start a new project.
+Template for Oracle PL/SQL and/or APEX development projects.
 
-In Github simply click the "Use this template" button.
-![Use this template](tmp/Use_this_template.png)
+- [Start](#start)
+- [Setup](#setup)
+- [Getting Started](#getting-started)
+- [Folder Structure](#folder-structure)
+- [Release Autocomplete](#release-autocomplete)
+  - [Release File Configuration](#release-file-configuration)
+  - [Run](#run)
+
+## Start
+
+In Github simply click the [`Use this template`](generate) button.
 
 Otherwise, you will likely want to **download** and not clone or fork. Then you can `git init` and start a new repo. 
 
