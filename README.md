@@ -47,21 +47,17 @@ sh scripts/new.sh
 
 ## Folder Structure
 
+The default folder structure (listed below) is their to provide a base level of folders that most projects will use. You're encouraged to add new folders to your projects where necessary. For example if you have ORDS scripts you may want to create a root folder called `ords` to store them.
+
 | Folder | Description |
 |:--|--|
 | apex | Application exports
-| bin | Binary files, executable scripts, Sublime/VSC specific files 
 | data | Conversion and seed data scripts
 | docs | Project documents 
-| install | Installation scripts of none code objects like tables, types, and indexes.
 | lib | Installation libraries (OSS, Logger, etc..)
 | release | Current release scripts for changes and patching
-| release/ddl | Current release scripts DDL
-| release/dml | Current release scripts DML
 | scripts | Usually re-runable scripts referenced by a release script
 | packages | Packages (`.pls` & `.plb` or `.pks` & `.pkb`), triggers (not audit triggers) or sometimes stand alone procedures and functions.
-| sql | Generic sql scripts that are not part of the application
-| tmp | Garbage stuff, not under version control
 | synonyms | Application Synonyms
 | triggers | Application Triggers
 | views | Application views
