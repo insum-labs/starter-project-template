@@ -13,7 +13,7 @@ Template for Oracle PL/SQL and/or APEX development projects.
 
 ## Start
 
-In Github simply click the [`Use this template`](generate) button.
+In Github simply click the [`Use this template`](/generate) button.
 
 Otherwise, you will likely want to **download** and not clone or fork. Then you can `git init` and start a new repo. 
 
