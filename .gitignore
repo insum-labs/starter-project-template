@@ -9,3 +9,7 @@ logs
 *.map
 /www/dist/css/app.css.map
 apexcl.config.json
+
+
+# Build - Ignore all config files
+build/*config*
