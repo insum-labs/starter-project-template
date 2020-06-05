@@ -9,9 +9,9 @@ This folder contains scripts to help build a release
 
 ## Configuration
 
-The first time you run the build script (ex: `./build.sh 1.0.0`) an error will be displayed an a new file will (`config.sh`) will be added to this folder. `config.sh` is ignored for git so you can store more sensitive information without it being checked in.
+The first time you run the build script (ex: `./build.sh 1.0.0`) an error will be displayed an a new file (`config.sh`) will be created. `config.sh` is in the `.gitignore` file so you can store more sensitive information without it being checked in.
 
-`config.sh` is self documented but requires some configuration before the build will work
+`config.sh` is self documented and requires some configuration before the build will work
 
 ## Build a Release
 
