@@ -2,8 +2,25 @@
 
 This folder contains scripts to help build a release
 
+- [Configuration](#configuration)
+- [Build a Release](#build-a-release)
 - [Files](#files)
   - [`apex_export_app.sql`](#apex_export_appsql)
+
+## Configuration
+
+The first time you run the build script (ex: `./build.sh 1.0.0`) an error will be displayed an a new file will (`config.sh`) will be added to this folder. `config.sh` is ignored for git so you can store more sensitive information without it being checked in.
+
+`config.sh` is self documented but requires some configuration before the build will work
+
+## Build a Release
+
+To build a release simply run:
+
+```bash
+# Change "version" for your version number
+./build.sh version
+```
 
 ## Files
 
