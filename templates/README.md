@@ -1,6 +1,6 @@
 # Project Code Templates
 
-This folder contains code templates for use for your project. Some started templates are provided and should be adjusted, removed, etc depending on your project needs.
+This folder contains code templates for use for your project. Some starter templates are provided and should be adjusted for each project.
 
 Most of the templates have a keyword `CHANGEME` in them that can easily be replaced with the name of the object being created. [Vistual Studio Code](https://code.visualstudio.com/) has a [`multi-cursor`](https://code.visualstudio.com/docs/editor/codebasics#_multiple-selections-multicursor) selection shortcut that will allow for quick text replacement.
 
