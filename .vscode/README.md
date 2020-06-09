@@ -10,6 +10,8 @@
 
 To compile the current file you're editing execute the "task" by `⌘+shift+B` and select `compile: <project name>`.
 
+![Task Compile Demo](img/task-compile.gif)
+
 ## Setup
 
 The first time you execute this script an error will be shown and `scripts/user-config.sh` will be created with some default values. Modify the variables as necessary.
