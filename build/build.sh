@@ -4,16 +4,10 @@
 # Parameters
 #   version: This is embedded in the APEX application release.
 
+# TODO delete
 # Load varaibles. Did this so we can check in this file without exposing passwords
 CONFIG_FILE=config.sh
 
-# Colors for bash. See: http://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
-COLOR_ORANGE='\033[0;33m'
-COLOR_RED='\033[0;31m'
-COLOR_RESET='\033[0m' # No Color
-
-FONT_BOLD='\033[1m'
-FONT_RESET='\033[22m'
 
 if [ -z "$1" ]; then
   echo 'Missing version number'
@@ -23,10 +17,14 @@ fi
 VERSION=$1
 
 # This is the directory that this file is located in
-START_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "Start Dir: $START_DIR\n"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# echo "Start Dir: $SCRIPT_DIR\n"
 
-cd $START_DIR
+# Load Helper
+source $SCRIPT_DIR/../scripts/bash-helper.sh
+
+
+cd $SCRIPT_DIR
 if [[ ! -f $CONFIG_FILE ]] ; then
   echo -e "${COLOR_RED}Warning: database connection configuration is missing ${COLOR_RESET}"
   echo -e "${FONT_BOLD}Modify $CONFIG_FILE${FONT_RESET} with your DB connection string and APEX applications"
@@ -42,6 +40,7 @@ if [[ ! -f $CONFIG_FILE ]] ; then
 DB_CONN="CHANGME_USERNAME/CHANGEME_PASSWORD@CHANGEME_SERVER:CHANGEME_PORT/CHANGEME_SID"
 
 # SQLcl binary (either sql or sqlcl depending on if you changed anything)
+# If using a docker container for SQLcl ensure the run alias does not include the "-it" option as TTY is not necessary for these scripts
 SQLCL=sql
 
 # Comma delimited list of APEX Applications to export. Ex: 100,200
@@ -57,14 +56,14 @@ fi
 #  DB_CONN="martin/martin123@localhost:32118/xepdb1"
 sqlcl 
 echo -e "*** Loading Config ***\n"
-cd $START_DIR
+cd $SCRIPT_DIR
 source ./$CONFIG_FILE
 
 
 # TODO mdsouza: renable
 # echo -e "*** Running Release Auto Complete ***\n"
-# cd $START_DIR
-# node $START_DIR/relase-autocomplete/release.js ./release/_release.sql
+# cd $SCRIPT_DIR
+# node $SCRIPT_DIR/relase-autocomplete/release.js ./release/_release.sql
 
 # TODO #10 APEX Nitro configuration
 # echo -e "*** APEX Nitro Publish ***\n"

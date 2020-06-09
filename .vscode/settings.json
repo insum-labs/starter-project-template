@@ -1,0 +1,28 @@
+{
+  "cSpell.enabledLanguageIds": [
+    "c",
+    "cpp",
+    "csharp",
+    "go",
+    "handlebars",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "latex",
+    "markdown",
+    "php",
+    "plaintext",
+    "plsql",
+    "python",
+    "restructuredtext",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "yml"
+  ],
+  "files.eol": "\n",
+  "files.associations": {
+    "*.pks": "plsql",
+    "*.pkb": "plsql"
+  }
+}

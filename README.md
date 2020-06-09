@@ -1,7 +1,7 @@
 
 # Starter Project Template
 
-Template for Oracle PL/SQL and/or APEX development projects.
+Template for Oracle PL/SQL and/or APEX development projects. It's **important** to note this is a **template**. As such if something doesn't fit your project's need or additional things are required start with this and adjust. All the tools here are meant to help provide results quickly and if they aren't don't use them.
 
 - [Start](#start)
 - [Setup](#setup)
@@ -53,6 +53,7 @@ The default folder structure (listed below) provides a set of common folders mos
 
 | Folder | Description |
 |:--|--|
+| [`.vscode`](.vscode/) | [Visual Studio Code](https://code.visualstudio.com/) specific settings
 | apex | Application exports
 | data | Conversion and seed data scripts
 | docs | Project documents 
