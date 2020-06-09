@@ -4,7 +4,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Load helper
-source $SCRIPT_DIR/../../scripts/bash-helper.sh
+source $SCRIPT_DIR/../../scripts/helper.sh
 
 # File can be referenced either as a full path or relative path
 FILE_FULL_PATH=$2

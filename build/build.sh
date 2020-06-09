@@ -16,7 +16,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # echo "Start Dir: $SCRIPT_DIR\n"
 
 # Load Helper and config
-source $SCRIPT_DIR/../scripts/bash-helper.sh
+source $SCRIPT_DIR/../scripts/helper.sh
 
 
 cd $SCRIPT_DIR
