@@ -30,7 +30,7 @@ cd $SCRIPT_DIR
 # echo -e "*** APEX Nitro Publish ***\n"
 # apex-nitro publish gre
 
-# APEX applications are defined in config.sh
+# APEX applications are defined in user-config.sh
 echo -e "APEX Applications to export: $APEX_APP_IDS\n"
 
 

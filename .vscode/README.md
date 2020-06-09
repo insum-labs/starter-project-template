@@ -12,7 +12,7 @@ To compile the current file you're editing execute the "task" by `⌘+shift+B` a
 
 ## Setup
 
-The first time you execute this script an error will be shown and `build/config.sh` will be created with some default values. Modify the variables as necessary.
+The first time you execute this script an error will be shown and `scripts/user-config.sh` will be created with some default values. Modify the variables as necessary.
 
 ### `tasks.json`
 

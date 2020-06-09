@@ -10,9 +10,9 @@ source $SCRIPT_DIR/../../scripts/helper.sh
 FILE_FULL_PATH=$2
 FILE_RELATIVE_PATH=$1
 
-# VSCODE_TASK_COMPILE_FILE should be defined in config.sh
+# VSCODE_TASK_COMPILE_FILE should be defined in user-config.sh
 if [ -z "$VSCODE_TASK_COMPILE_FILE" ]; then
-  echo -e "${COLOR_ORANGE} Warning: VSCODE_TASK_COMPILE_FILE is not defined.${COLOR_RESET}\nSet VSCODE_TASK_COMPILE_FILE in config.sh"
+  echo -e "${COLOR_ORANGE} Warning: VSCODE_TASK_COMPILE_FILE is not defined.${COLOR_RESET}\nSet VSCODE_TASK_COMPILE_FILE in $USER_CONFIG_FILE"
   echo -e "Defaulting to full path"
   VSCODE_TASK_COMPILE_FILE=$FILE_FULL_PATH
 fi
