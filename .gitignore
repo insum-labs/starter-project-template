@@ -12,4 +12,4 @@ apexcl.config.json
 
 
 # Build - Ignore all config files
-scripts/*config*
+scripts/config.sh
