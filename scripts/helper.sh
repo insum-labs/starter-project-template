@@ -43,9 +43,6 @@ SQLCL=sql
 # If using a docker container for sqlplus ensure the run alias does not include the "-it" option as TTY is not necessary for these scripts
 SQLPLUS=sqlplus
 
-# Comma delimited list of APEX Applications to export. Ex: 100,200
-APEX_APP_IDS=CHANGEME
-
 
 # *** VSCode settings ***
 
@@ -54,8 +51,8 @@ APEX_APP_IDS=CHANGEME
 VSCODE_TASK_COMPILE_BIN=\$SQLPLUS
 
 # File to compile. Options:
-# $FILE_RELATIVE_PATH: Will evaluate to relative to project ex: views/my_view.sql
-# $FILE_FULL_PATH: Will evalutate to full path to file ex:
+# \$FILE_RELATIVE_PATH: Will evaluate to relative to project ex: views/my_view.sql
+# \$FILE_FULL_PATH: Will evalutate to full path to file ex:
 # 
 # If using sqlplus for docker an example may be:
 # VSCODE_TASK_COMPILE_FILE=/sqlplus/\$FILE_RELATIVE_PATH 
