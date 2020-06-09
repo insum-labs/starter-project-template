@@ -1,9 +1,10 @@
 
 # Starter Project Template
 
-Template for Oracle PL/SQL and/or APEX development projects. It's **important** to note this is a **template**. As such if something doesn't fit your project's need or additional things are required start with this and adjust. All the tools here are meant to help provide results quickly and if they aren't don't use them.
+Template for Oracle PL/SQL and/or APEX development projects. It's **important** to note this is a **template**. As such if something doesn't fit your project's need or additional changes are required start with this and adjust accordingly. All the tools here are meant to help provide results quickly. If your project doesn't need them, remove them.
 
 - [Start](#start)
+- [Overview](#overview)
 - [Setup](#setup)
 - [Getting Started](#getting-started)
 - [Folder Structure](#folder-structure)
@@ -14,6 +15,14 @@ Template for Oracle PL/SQL and/or APEX development projects. It's **important** 
 ## Start
 
 In Github simply click the [`Use this template`](https://github.com/insum-labs/starter-project-template/generate) button. If using another git platform, start a new project (`git init`) then [**download**](https://github.com/insum-labs/starter-project-template/archive/master.zip) this project (*do not clone or fork*) and unzip into your new project.
+
+## Overview
+
+This template contains a lot of features that may help with your project.
+
+- Folders: The most common folder structure is provided with this project.
+- Build: A common build script is provided. This build script exports APEX applications and lists changed files in the `release` file. More details are provided in the [`build`](build/) folder
+- [Visual Studio Code](https://code.visualstudio.com/) (VSC) integration: compile or run your SQL and PL/SQL code right from VSC. More details are provided in the [`.vscode`](.vscode/) folder.
 
 
 ## Setup
