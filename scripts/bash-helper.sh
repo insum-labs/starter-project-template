@@ -17,12 +17,14 @@ load_colors(){
 # Load the config file stored in scripts/config
 load_config(){
   local SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  CONFIG_FILE=$SCRIPT_DIR/config.sh
+  
+  USER_CONFIG_FILE=$SCRIPT_DIR/config.sh
+  PROJECT_CONFIG_FILE=$SCRIPT_DIR/project-config.sh
 
-  if [[ ! -f $CONFIG_FILE ]] ; then
+  if [[ ! -f $USER_CONFIG_FILE ]] ; then
     echo -e "${COLOR_RED}Warning: database connection configuration is missing ${COLOR_RESET}"
-    echo -e "${FONT_BOLD}Modify $CONFIG_FILE${FONT_RESET} with your DB connection string and APEX applications"
-    cat > $CONFIG_FILE <<EOL
+    echo -e "${FONT_BOLD}Modify $USER_CONFIG_FILE${FONT_RESET} with your DB connection string and APEX applications"
+    cat > $USER_CONFIG_FILE <<EOL
 #!/bin/bash
 
 # If you need to register any aliases in bash uncomment these lines
@@ -66,11 +68,14 @@ read -d '' VSCODE_TASK_COMPILE_SQL_PREFIX << EOF
 EOF
 
 EOL
-    chmod 755 $CONFIG_FILE
+    chmod 755 $USER_CONFIG_FILE
     exit
   fi
 
-  source $CONFIG_FILE
+  # Load project config
+  source $PROJECT_CONFIG_FILE
+  # Load user config
+  source $USER_CONFIG_FILE
 } # load_config
 
 

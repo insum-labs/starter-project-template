@@ -4,11 +4,6 @@
 # Parameters
 #   version: This is embedded in the APEX application release.
 
-# TODO delete
-# Load varaibles. Did this so we can check in this file without exposing passwords
-CONFIG_FILE=config.sh
-
-
 if [ -z "$1" ]; then
   echo 'Missing version number'
   exit 0
@@ -20,45 +15,11 @@ VERSION=$1
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # echo "Start Dir: $SCRIPT_DIR\n"
 
-# Load Helper
+# Load Helper and config
 source $SCRIPT_DIR/../scripts/bash-helper.sh
 
 
 cd $SCRIPT_DIR
-if [[ ! -f $CONFIG_FILE ]] ; then
-  echo -e "${COLOR_RED}Warning: database connection configuration is missing ${COLOR_RESET}"
-  echo -e "${FONT_BOLD}Modify $CONFIG_FILE${FONT_RESET} with your DB connection string and APEX applications"
-  cat > $CONFIG_FILE <<EOL
-#!/bin/bash
-
-# If you need to register any aliases in bash uncomment these lines
-# shopt -s expand_aliases
-# This should reference where you store aliases (or manually define them)
-# source ~/.aliases.sh
-
-# Connection string to development environment
-DB_CONN="CHANGME_USERNAME/CHANGEME_PASSWORD@CHANGEME_SERVER:CHANGEME_PORT/CHANGEME_SID"
-
-# SQLcl binary (either sql or sqlcl depending on if you changed anything)
-# If using a docker container for SQLcl ensure the run alias does not include the "-it" option as TTY is not necessary for these scripts
-SQLCL=sql
-
-# Comma delimited list of APEX Applications to export. Ex: 100,200
-APEX_APP_IDS=CHANGEME
-EOL
-  chmod 755 $CONFIG_FILE
-  exit
-fi
-
-
-# Load config
-# Variables expected:
-#  DB_CONN="martin/martin123@localhost:32118/xepdb1"
-sqlcl 
-echo -e "*** Loading Config ***\n"
-cd $SCRIPT_DIR
-source ./$CONFIG_FILE
-
 
 # TODO mdsouza: renable
 # echo -e "*** Running Release Auto Complete ***\n"
