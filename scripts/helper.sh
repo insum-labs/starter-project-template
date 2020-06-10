@@ -17,7 +17,8 @@ load_colors(){
 # Load the config file stored in scripts/config
 load_config(){
   local SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  
+  PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
   USER_CONFIG_FILE=$SCRIPT_DIR/user-config.sh
   PROJECT_CONFIG_FILE=$SCRIPT_DIR/project-config.sh
 
@@ -90,6 +91,40 @@ verify_config(){
     exit
   fi
 } # verify_config
+
+
+# Export APEX applications
+# Parameters
+# $1 Version number
+export_apex_app(){
+
+  local APEX_APP_VERSION=$1
+
+  for APEX_APP_ID in $(echo $APEX_APP_IDS | sed "s/,/ /g")
+  do
+    echo "APEX Export: $APEX_APP_ID"
+
+    # Export single file app
+    # Need to start in root project dicetory as export will automatically store files in the apex folder
+    cd $PROJECT_DIR
+
+    echo exit | $SQLCL $DB_CONN @scripts/apex_export.sql $APEX_APP_ID
+    
+    if [ ! -z "$APEX_APP_VERSION" ]; then
+      # Add release number to app
+      # In order to support the various versions of sed need to add the "-bak"
+      # See: https://unix.stackexchange.com/questions/13711/differences-between-sed-on-mac-osx-and-other-standard-sed/131940#131940
+      echo "APEX_APP_VERSION: $APEX_APP_VERSION detected, injecting into APEX application"
+      sed -i -bak "s/%RELEASE_VERSION%/$VERSION/" apex/f$APEX_APP_ID.sql
+      # Remove the backup version of file (see above)
+      rm apex/f$APEX_APP_ID.sql-bak
+    fi
+
+    # Export split app (or APEXcl)
+    echo exit | $SQLCL $DB_CONN @scripts/apex_export.sql $APEX_APP_ID -split
+
+  done
+}
 
 
 load_colors

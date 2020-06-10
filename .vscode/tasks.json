@@ -18,6 +18,20 @@
       },
       "options": {},
       "problemMatcher": []
+    },
+    // EXPORT apex applications
+    {
+      "label": "apex export: CHANGEME",
+      "type": "shell",
+      "command": ".vscode/scripts/apex_export.sh",
+      "args": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "options": {},
+      "problemMatcher": []
     }
   ]
 }

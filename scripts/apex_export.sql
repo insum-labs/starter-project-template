@@ -44,5 +44,5 @@ set serveroutput off
 -- end
 
 -- spool f&APP_ID..sql
-apex export -applicationid &APP_ID &EXPORT_OPTIONS
+apex export -applicationid &APP_ID -dir apex &EXPORT_OPTIONS
 -- spool off
