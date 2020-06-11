@@ -19,8 +19,8 @@ load_config(){
   local SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-  USER_CONFIG_FILE=$SCRIPT_DIR/user-config.sh
-  PROJECT_CONFIG_FILE=$SCRIPT_DIR/project-config.sh
+  USER_CONFIG_FILE=$PROJECT_DIR/scripts/user-config.sh
+  PROJECT_CONFIG_FILE=$PROJECT_DIR/scripts/project-config.sh
 
   if [[ ! -f $USER_CONFIG_FILE ]] ; then
     echo -e "${COLOR_RED}Warning: database connection configuration is missing ${COLOR_RESET}"
