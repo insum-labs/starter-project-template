@@ -3,7 +3,7 @@
 # Global variables
 # Find the current path this script is in
 # This needs to be run outside of any functions as $0 has different meaning in a function
-SCRIPT_DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # Root folder in project directory
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 # echo "SCRIPT_DIR: $SCRIPT_DIR"
@@ -28,6 +28,8 @@ load_colors(){
 load_config(){
   USER_CONFIG_FILE=$PROJECT_DIR/scripts/user-config.sh
   PROJECT_CONFIG_FILE=$PROJECT_DIR/scripts/project-config.sh
+  # echo "USER_CONFIG_FILE: $USER_CONFIG_FILE"
+  # echo "PROJECT_CONFIG_FILE: $PROJECT_CONFIG_FILE"
 
   if [[ ! -f $USER_CONFIG_FILE ]] ; then
     echo -e "${COLOR_RED}Warning: database connection configuration is missing ${COLOR_RESET}"
@@ -59,12 +61,13 @@ SQLPLUS=sqlplus
 VSCODE_TASK_COMPILE_BIN=\$SQLPLUS
 
 # File to compile. Options:
-# \$FILE_RELATIVE_PATH: Will evaluate to relative to project ex: views/my_view.sql
-# \$FILE_FULL_PATH: Will evalutate to full path to file ex:
+# \\\$FILE_RELATIVE_PATH: Will evaluate to relative to project ex: views/my_view.sql
+# \\\$FILE_FULL_PATH: Will evalutate to full path to file ex:
 # 
 # If using sqlplus for docker an example may be:
-# VSCODE_TASK_COMPILE_FILE=/sqlplus/\$FILE_RELATIVE_PATH 
-VSCODE_TASK_COMPILE_FILE=\$FILE_FULL_PATH
+# VSCODE_TASK_COMPILE_FILE=/sqlplus/\\\$FILE_RELATIVE_PATH 
+# Note: You need to escape the "$" here so it should say "\\\$FILE_FULL_PATH"
+VSCODE_TASK_COMPILE_FILE=\\\$FILE_FULL_PATH
 
 # This code will be run before the file is executed
 read -d '' VSCODE_TASK_COMPILE_SQL_PREFIX << EOF
