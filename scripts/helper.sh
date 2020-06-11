@@ -3,7 +3,12 @@
 # Global variables
 # Find the current path this script is in
 # This needs to be run outside of any functions as $0 has different meaning in a function
+# If this script is being called from using "source ..." then ${BASH_SOURCE[0]} evaluates to null Use $0 instead
+if [ -z "${BASH_SOURCE[0]}" ] ; then 
+  SCRIPT_DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
+else 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+fi
 # Root folder in project directory
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 # echo "SCRIPT_DIR: $SCRIPT_DIR"
