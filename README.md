@@ -27,34 +27,12 @@ This template contains a lot of features that may help with your project.
 
 ## Setup
 
-* Setup `apex/_ins.sql` with the correct Workspace & App Number
-* Decide if your project will use a static or dynamic template `_release_template_static.sql` or `_release_template_dynamic.sql`.  You could optionally delete one of them.
-* Generate for your `_release.sql` script [ASCII Art](https://asciiartgen.now.sh/?style=standard)
-* Optionally remove directories that won't apply (ie. conversion)
+* Look for the several "_CHANGEME_*" entries in `_release.sql` and enter the correct values.
+* Read more about the [release](release/README.md)
 
-## Getting Started
-
-Start a new release:
-* Run commands like the following depending on a static or dynamic release
-
-```
-rm ../release/[a-z]*.sql
-cp ../release/_release_template_static.sql ../release/_release.sql
-```
-
-
-```
-rm ../release/[a-z]*.sql
-cp ../release/_release_template_dynamic.sql ../release/_release.sql
-```
-
-
-* Optionally modify `script/new.sh` as needed
-
-```
-sh scripts/new.sh
-```
-
+### Optionally
+* Generate some pretty [ASCII Art](https://asciiartgen.now.sh/?style=standard) for your `_release.sql` for the top of your `_release.sql` script
+* Remove directories that won't apply to your project (ie. data, templates, etc...)
 
 ## Folder Structure
 

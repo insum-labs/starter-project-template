@@ -177,3 +177,4 @@ PROMPT *** APEX Build option ***
 
 
 spool off
+exit
