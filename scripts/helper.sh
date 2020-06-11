@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Global variables
+# Find the current path this script is in
+# This needs to be run outside of any functions as $0 has different meaning in a function
+SCRIPT_DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
+# Root folder in project directory
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+# echo "SCRIPT_DIR: $SCRIPT_DIR"
+# echo "PROJECT_DIR: $PROJECT_DIR"
+
+
 # Load colors
 # To use colors:
 # echo -e "${COLOR_RED}this is red${COLOR_RESET}"
@@ -16,9 +26,6 @@ load_colors(){
 
 # Load the config file stored in scripts/config
 load_config(){
-  local SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-
   USER_CONFIG_FILE=$PROJECT_DIR/scripts/user-config.sh
   PROJECT_CONFIG_FILE=$PROJECT_DIR/scripts/project-config.sh
 
