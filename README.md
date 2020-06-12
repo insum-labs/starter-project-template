@@ -37,7 +37,7 @@ The default folder structure (listed below) provides a set of common folders mos
 |:--|--|
 | [`.vscode`](.vscode/) | [Visual Studio Code](https://code.visualstudio.com/) specific settings
 | apex | Application exports
-| data | Conversion and seed data scripts
+| [`data`](data/) | Conversion and seed data scripts
 | docs | Project documents 
 | lib | Installation libraries (OSS, Logger, etc..)
 | [`release`](release/) | Current release scripts for changes and patching. Documentation is provided on various ways to do releases.
