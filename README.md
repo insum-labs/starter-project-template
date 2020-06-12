@@ -1,12 +1,11 @@
 
 # Starter Project Template
 
-Template for Oracle PL/SQL and/or APEX development projects. It's **important** to note this is a **template**. As such if something doesn't fit your project's need or additional changes are required start with this and adjust accordingly. All the tools here are meant to help provide results quickly. If your project doesn't need them, remove them.
+Template for Oracle PL/SQL and/or APEX development projects. It's **important** to note this is a **template**. If something doesn't fit your project's need or additional changes are required adjust accordingly. All the tools here are meant to help provide results quickly. If your project doesn't need them, remove them.
 
 - [Start](#start)
 - [Overview](#overview)
 - [Setup](#setup)
-- [Getting Started](#getting-started)
 - [Folder Structure](#folder-structure)
 - [Release Autocomplete](#release-autocomplete)
   - [Release File Configuration](#release-file-configuration)
@@ -20,18 +19,14 @@ In Github simply click the [`Use this template`](https://github.com/insum-labs/s
 
 This template contains a lot of features that may help with your project.
 
-- Folders: The most common folder structure is provided with this project.
-- Build: A common build script is provided. This build script exports APEX applications and lists changed files in the `release` file. More details are provided in the [`build`](build/) folder
+- [Folders](folder-structure): The most common project folder structure is provided with this project.
+- [Release](release/): Framework to do build and releases.
 - [Visual Studio Code](https://code.visualstudio.com/) (VSC) integration: compile or run your SQL and PL/SQL code right from VSC. More details are provided in the [`.vscode`](.vscode/) folder.
 
 
 ## Setup
 
-* Look for the several "_CHANGEME_*" entries in `_release.sql` and enter the correct values.
-* Read more about the [release](release/README.md)
-
-### Optionally
-* Generate some pretty [ASCII Art](https://asciiartgen.now.sh/?style=standard) for your `_release.sql` for the top of your `_release.sql` script
+* Replace `CHANGEME` references throughout this project. Each substitution should be evident in each file.
 * Remove directories that won't apply to your project (ie. data, templates, etc...)
 
 ## Folder Structure
@@ -45,13 +40,16 @@ The default folder structure (listed below) provides a set of common folders mos
 | data | Conversion and seed data scripts
 | docs | Project documents 
 | lib | Installation libraries (OSS, Logger, etc..)
-| release | Current release scripts for changes and patching
+| [`release`](release/) | Current release scripts for changes and patching. Documentation is provided on various ways to do releases.
 | scripts | Usually re-runable scripts referenced by a release script
 | packages | Packages (`.pls` & `.plb` or `.pks` & `.pkb`), (*If you have triggers, stand alone procedures or functions it's recommend to create a new folder for them*)
 | synonyms | Application Synonyms
 | triggers | Application Triggers
 | views | Application views
 | www | Assets that go in the server: images, CSS, and JavaScript
+
+
+TODO: Move everything below here to the build or release folder
 
 ## Release Autocomplete
 

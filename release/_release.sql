@@ -1,3 +1,4 @@
+-- If you want to add ASCII Art: https://asciiartgen.now.sh/?style=standard
 -- *** DO NOT MODIFY: HEADER SECTION ***
 clear screen
 
