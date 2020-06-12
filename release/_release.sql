@@ -45,6 +45,9 @@ declare
   c_app_id constant apex_applications.application_id%type := CHANGEME_APPLICATION_ID;
   c_username constant varchar2(30) := user;
 begin
+  -- Note: This will NOT work in versions < APEX 18. as apex_session.create_session does not exist until then
+  -- If using APEX 5.1 or lower use oos_utils.create_session  (see https://github.com/OraOpenSource/oos-utils/blob/master/docs/oos_util_apex.md#create_session)
+  -- To install OOS Utils see: https://github.com/OraOpenSource/oos-utils
   apex_session.create_session (
     p_app_id => c_app_id,
     p_page_id => 1,
