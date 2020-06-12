@@ -38,7 +38,7 @@ Each file created in the `code` should be added to `code/_run_release_code.sql`.
 
 ## Release Process
 
-Oracle releases are very "unforgiving" (i.e., if an error occurs, it can ruin the entire rest of release and make it difficult to back out). This can make it very difficult to run standard CI/CD tools to run Oracle code releases as one error can completely corrupt an environment and it may not be easy to "restore" the schema to a point in time before the release. *Note: Making releases scripts re-runnable or providing roll back support is not impossible however it can be very expensive to do so properly.*, 
+Oracle releases are very "unforgiving" (i.e. if an error occurs it can ruin the entire rest of release and make it difficult to back out). This can make it very difficult to run standard CI/CD tools to dor releases in Oracle as one error can completely corrupt an environment and it may not be easy to "restore" the schema to a point in time before the release. *Note: Making releases scripts re-runnable or providing roll back support is not impossible however it can be very expensive to do so properly.*, 
 
 The rest of this section assumes the following:
 - Release process is not re-runnable. For example if a DDL statement fails there's no way to tell if it's already been run.
@@ -126,8 +126,6 @@ The positive aspect with this approach is that it reduces the risk that releases
 
 The *negative* aspect with this approach is that many releases are created. For example suppose version `1.0.0` is created but a few bugs are found during the testing phase. Versions `1.0.1`, `1.0.2`, and `1.0.3` may also be created for each patch. When going to production all four releases must be deployed. At first glance this sounds like a lot of work but is not much overhead. 
 
-When comparing the two concepts one isn't better than the other. They're different and suit different teams needs.
-
 The follow example shows how this concept is done in git:
 
 - Once initial code is ready to be deploy to Test, fix any issues, merge back changes, and tag release.
@@ -186,7 +184,7 @@ $SQLCL <prod_connection_string> @_release.sql
 # Release does not include "exit" as last line (the default _release.sql contains an exit statement)
 # echo exit | $SQLCL <prod_connection_string> @_release.sql
 
-# Show if any errors occurred.
+# Show if any errors occurred (optional)
 # Add additional logic that is applicable to handle successful and invalid releases
 if [ $? -eq 0 ] ; then
   echo "Release successful"
@@ -200,7 +198,7 @@ fi
 
 ### Run Release Manually
 
-Running the release manually can help catch errors quickly and fix them right where they occur. At first glance this can sound like a time consuming process. If using the right tools and techniques it can be done very quickly. 
+Running the release manually can help catch errors quickly and fix them right where they occur. When using the right tools and techniques this can be done very quickly.
 
 Assumptions:
 - Using [Visual Studio Code](https://code.visualstudio.com/) (VSC) (or similar text editor)
@@ -211,7 +209,7 @@ Assumptions:
     - Now you can toggle between the editor and terminal window using `⌘+1` and `⌘+2`. This is critical to scroll through large files, copy from the editor, then past in the terminal (in a SQLcl session)
 
 
-Open the [Terminal window](https://code.visualstudio.com/docs/editor/integrated-terminal). In the terminal window:
+Open the [Terminal window](https://code.visualstudio.com/docs/editor/integrated-terminal) (`Terminal > New Terminal`) and run:
 
 ```bash
 cd <project directory>
@@ -225,6 +223,6 @@ source ../scripts/helper.sh
 $SQLCL <test_connection_string>
 ```
 
-Once this is done manually run through the sections in `_release.sql` and copy and past section(s) of code into the terminal as shown below. When/if the `_release.sql` contains files that are referenced in the `release/code` folder it's recommended you open those up manually and do the same thing (i.e. copy and paste).
+Once this is done manually run through the sections in `_release.sql` and copy and paste each section(s) of code into the terminal as shown below. When/if the `_release.sql` contains files that are referenced in the `release/code` folder it's recommended you open those up manually and do the same thing (i.e. copy and paste).
 
 ![VSC-demo](../.vscode/img/vsc-manual-release.gif)
