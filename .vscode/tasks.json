@@ -8,8 +8,11 @@
       "type": "shell",
       "command": ".vscode/scripts/run_sql.sh",
       "args": [
-        "${relativeFile}",
-        "${file}"
+        // "${relativeFile}",
+        // "${file}"
+        // Escaped double quotes are required to make compatible with Cmder in Windows
+        "\"${relativeFile}\"",
+        "\"${file}\""
       ],
       "group": "build",
       "presentation": {
