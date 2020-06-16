@@ -13,7 +13,7 @@
 
 The first time you execute this script an error will be shown and `scripts/user-config.sh` will be created with some default values. Modify the variables as necessary.
 
-*Note: Windows users: Please ensure WSL or cmder is configured to run bash as terminal in VSC: [../README.md#windows-setup](instructions).*
+*Note: Windows users: Please ensure WSL or cmder is configured to run bash as terminal in VSC: [instructions](../README.md#windows-setup)*
 
 ### `tasks.json`
 
