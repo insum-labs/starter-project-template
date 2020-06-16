@@ -17,7 +17,7 @@ if [ -z "$VSCODE_TASK_COMPILE_FILE" ]; then
   VSCODE_TASK_COMPILE_FILE=$FILE_FULL_PATH
 fi
 # Since VSCODE_TASK_COMPILE_FILE contains the variable reference need to evaluate it here
-VSCODE_TASK_COMPILE_FILE=$(eval "printf $VSCODE_TASK_COMPILE_FILE")
+VSCODE_TASK_COMPILE_FILE=$(eval "echo $VSCODE_TASK_COMPILE_FILE")
 
 echo -e "Parsing file: ${COLOR_LIGHT_GREEN}$VSCODE_TASK_COMPILE_FILE${COLOR_RESET}"
 echo -e "pwd: $PWD"
