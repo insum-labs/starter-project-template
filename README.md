@@ -15,6 +15,10 @@ Template for Oracle PL/SQL and/or APEX development projects. It's **important** 
 
 In Github simply click the [`Use this template`](https://github.com/insum-labs/starter-project-template/generate) button. If using another git platform, start a new project (`git init`) then [**download**](https://github.com/insum-labs/starter-project-template/archive/master.zip) this project (*do not clone or fork*) and unzip into your new project.
 
+If you're new to git check out these resources to help learn more about it:
+
+- [Visualized Git Commands](https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1)
+
 ## Overview
 
 This template contains a lot of features that may help with your project.
