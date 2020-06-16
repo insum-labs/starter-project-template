@@ -31,7 +31,7 @@ This template contains a lot of features that may help with your project.
 ## Setup
 
 * Replace `CHANGEME` references throughout this project. Each substitution should be evident in each file.
-* Remove directories that won't apply to your project (ie. data, templates, etc...)
+* Remove directories that don't apply to your project (ie. data, templates, etc...)
 
 ## Folder Structure
 
