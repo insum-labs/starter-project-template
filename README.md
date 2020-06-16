@@ -7,6 +7,8 @@ Template for Oracle PL/SQL and/or APEX development projects. It's **important** 
 - [Overview](#overview)
 - [Setup](#setup)
 - [Folder Structure](#folder-structure)
+- [Windows Setup](#windows-setup)
+  - [cmder setup](#cmder-setup)
 - [Release Autocomplete](#release-autocomplete)
   - [Release File Configuration](#release-file-configuration)
   - [Run](#run)
@@ -53,6 +55,32 @@ The default folder structure (listed below) provides a set of common folders mos
 | www | Assets that go in the server: images, CSS, and JavaScript
 
 
+
+## Windows Setup
+
+All the scripts provided in this started template are written in bash for Linux (and macOS) environments. Windows users have several options. They can install [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)(WSL) to run Linux in Windows. 
+
+Alternatively users can install [cmder](https://cmder.net/) which is a Linux emulator for Windows. 
+
+### cmder setup
+
+To setup cmder [download](https://cmder.net/) the latest version. Unzip and place the folder `cmder` into `c:\`. *Note: cmder can be stored anywhere. For the purpose of these instructions its assumed that it's stored in `c:\cmder`*.
+
+You can launch cmder anytime by running `c:\cmder\Cmder.exe` (*Hint: the first time you run it pin to your taskbar for quick access*)
+
+To integrate with VSCode:
+
+- `File > Preferences > Settings`
+- Search for `terminal integrated shell`
+  - In the results you'll find a link to `Terminal > Integrated > Automation Shell: Windows` and a link to `Edit in settings.json`. Click the edit link and add the following to `settings.json`:
+
+```json
+  "terminal.integrated.shell.windows": "C:\\cmder\\vendor\\git-for-windows\\bin\\bash.exe",
+  "terminal.integrated.automationShell.linux": ""
+```
+
+
+*******
 TODO: Move everything below here to the build or release folder
 
 ## Release Autocomplete

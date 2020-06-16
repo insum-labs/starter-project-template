@@ -13,6 +13,8 @@
 
 The first time you execute this script an error will be shown and `scripts/user-config.sh` will be created with some default values. Modify the variables as necessary.
 
+*Note: Windows users: Please ensure WSL or cmder is configured to run bash as terminal in VSC. Instructions are in [../README.md#windows-setup*
+
 ### `tasks.json`
 
 This file defines the VSCode task. The only thing that needs to be modified is the to define a task name. Search the file for `CHANGEME` and replace with the project name.
