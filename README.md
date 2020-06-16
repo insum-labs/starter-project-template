@@ -24,7 +24,7 @@ If you're new to git check out these resources to help learn more about it:
 This template contains a lot of features that may help with your project.
 
 - [Folders](folder-structure): The most common project folder structure is provided with this project.
-- [Release](release/): Framework to do build and releases.
+- [Release](release/): Framework to build and do releases.
 - [Visual Studio Code](https://code.visualstudio.com/) (VSC) integration: compile or run your SQL and PL/SQL code right from VSC. More details are provided in the [`.vscode`](.vscode/) folder.
 
 
