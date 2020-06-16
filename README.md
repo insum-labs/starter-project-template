@@ -43,7 +43,7 @@ The default folder structure (listed below) provides a set of common folders mos
 | apex | Application exports
 | [`data`](data/) | Conversion and seed data scripts
 | docs | Project documents 
-| lib | Installation libraries (OSS, Logger, etc..)
+| lib | Installation libraries ([OOS Utils](https://github.com/OraOpenSource/oos-utils), [Logger](https://github.com/OraOpenSource/Logger), etc..)
 | [`release`](release/) | Current release scripts for changes and patching. Documentation is provided on various ways to do releases.
 | scripts | Usually re-runable scripts referenced by a release script
 | packages | Packages (`.pls` & `.plb` or `.pks` & `.pkb`), (*If you have triggers, stand alone procedures or functions it's recommend to create a new folder for them*)
