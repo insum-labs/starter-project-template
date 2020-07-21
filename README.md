@@ -6,6 +6,7 @@ Template for Oracle PL/SQL and/or APEX development projects. It's **important** 
 - [Start](#start)
 - [Overview](#overview)
 - [Setup](#setup)
+- [Git Workflows](#git-workflows)
 - [Folder Structure](#folder-structure)
 - [Windows Setup](#windows-setup)
   - [cmder setup](#cmder-setup)
@@ -34,6 +35,19 @@ This template contains a lot of features that may help with your project.
 
 * Replace `CHANGEME` references throughout this project. Each substitution should be evident in each file.
 * Remove directories that don't apply to your project (ie. data, templates, etc...)
+
+## Git Workflows
+
+They're several concepts of how to manage your Git projects. I.e. is your active development done in the `master` branch or in a `develop` branch? Each concept has their pros and cons and we recommend you review and understand the differences to apply the best method for your project. The most popular workflows are:
+
+- [`git-flow`](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-flow)
+- [GitLab flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
+  - This is a super set of `git-flow` and contains GitLab specific features to help if using [GitLab](https://gitlab.com/)
+  - Document provides a great comparison of all the different workflow models
+- [GitHub Flow](https://guides.github.com/introduction/flow/)
+  - *Note in the GitLab flow document there's comment on GitHub flow is not recommended unless you deploy to prod frequently. For Oracle projects this comment can usually be ignored*
+
+Given the simplicity of [GitHub Flow](https://guides.github.com/introduction/flow/) we recommend this concept for most projects.
 
 ## Folder Structure
 
