@@ -60,6 +60,8 @@ RELEASE_VERSION=1.0.0
 GIT_PRE_RELEASE_BRANCH=pre-release-$RELEASE_VERSION
 ```
 
+*Note: [semantic versioning](https://semver.org/) is recommended for version numbers. TL;DR: `major.minor.patch` numbering.*
+
 ### Concept 1: Code is tagged each time it is run in Production
 
 In this process code is tagged each time it **goes to Prod**. This means that every time a patch is applied in Test the release script must be manually updated. This poses a risk in that the order the patches are applied matters. The positive is that it can make releases simpler but requires more manual diligence. The follow example walks through the process.
