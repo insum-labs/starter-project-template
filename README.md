@@ -1,7 +1,7 @@
 
 # Starter Project Template
 
-Template for Oracle PL/SQL and/or APEX development projects. It's **important** to note this is a **template**. If something doesn't fit your project's need or additional changes are required adjust accordingly. All the tools here are meant to help provide results quickly. If your project doesn't need them, remove them.
+[Template for Oracle PL/SQL and/or APEX development](https://github.com/insum-labs/starter-project-template) projects. It's **important** to note this is a **template**. If something doesn't fit your project's need or additional changes are required adjust accordingly. All the tools here are meant to help provide results quickly. If your project doesn't need them, remove them.
 
 - [Start](#start)
 - [Overview](#overview)
