@@ -114,6 +114,12 @@ git push origin --tags
 git checkout master
 git push --delete origin $GIT_PRE_RELEASE_BRANCH
 git branch -d $GIT_PRE_RELEASE_BRANCH
+
+# Cleanup the release folder
+# Where <base_folder_name is the root folder of this project>
+# For example if the project's base folder is in /users/martin/git/starter-project-template than the call would be: reset_release starter-project-template
+source scripts/helper.sh
+reset_release <base_folder_name>
 ```
 
 To run the release in production see [Running in Production](#running-a-release-in-production) below.
@@ -159,9 +165,13 @@ git push origin --tags
 git checkout master
 git push --delete origin $GIT_PRE_REL_BRANCH
 git branch -d $GIT_PRE_REL_BRANCH
-```
 
-- Cleanup release (TODO: Need this as part of build scripts)
+# Cleanup the release folder
+# Where <base_folder_name is the root folder of this project>
+# For example if the project's base folder is in /users/martin/git/starter-project-template than the call would be: reset_release starter-project-template
+source scripts/helper.sh
+reset_release <base_folder_name>
+```
 
 Each time a code needs to go to the Test environment use the same scripts above. I.e. create another release and run in Test.
 

@@ -142,6 +142,26 @@ export_apex_app(){
 }
 
 
-load_colors
-load_config
-verify_config
+# Resets release/code/_run_code.sql and deletes all files in release/code directory
+# 
+# Parmaters
+# $1 confirmation root folder name. Given that this will delete files in the release folder want to make sure we're deleting files where expexcted.
+#  For example this starter project exsts in /users/martin/git/starter-project-template
+#  For this function to work you must call: reset_release starter-project-template
+reset_release(){
+  local CONFIRMATION_DIR=$1
+  local PROJECT_DIR_FOLDER_NAME=${PROJECT_DIR##*/}
+
+  if [[ $CONFIRMATION_DIR != $PROJECT_DIR_FOLDER_NAME ]]; then
+    echo -e "${COLOR_RED}Error: ${COLOR_RESET} confirmation directory missing or not matching. Correct value is: $PROJECT_DIR_FOLDER_NAME"
+    # exit 1
+  else
+    # Clear release-specific code
+    rm $PROJECT_DIR/release/code/*.sql
+    # Reset _run_code.sql file
+    echo "-- Release specific references to files in this folder" > $PROJECT_DIR/release/code/_run_code.sql
+    echo "-- This file is automatically executed from the /release/_release.sql file" >>$PROJECT_DIR/release/code/_run_code.sql
+    echo "-- \n-- Ex: @code/issue-123.sql \n" >>$PROJECT_DIR/release/code/_run_code.sql
+  fi
+} # reset_release
+
