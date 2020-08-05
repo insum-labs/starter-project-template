@@ -19,10 +19,10 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/../scripts/helper.sh
 
 
-# TODO mdsouza: renable
-# echo -e "*** Running Release Auto Complete ***\n"
-# cd $SCRIPT_DIR
-# node $SCRIPT_DIR/relase-autocomplete/release.js ./release/_release.sql
+echo -e "*** Listing all views and packages ***\n"
+list_all_files views release/all_views.sql sql
+list_all_files packages release/all_packages.sql pks,pkb
+
 
 # TODO #10 APEX Nitro configuration
 # echo -e "*** APEX Nitro Publish ***\n"
@@ -30,5 +30,3 @@ source $SCRIPT_DIR/../scripts/helper.sh
 
 # Export APEX applications, defined in project-config.sh
 export_apex_app $VERSION
-
-

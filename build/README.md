@@ -22,6 +22,8 @@ To build a release simply run:
 ./build.sh version
 ```
 
+By default this script will scrape the `views` and `packages` folder and generate `release/all_views.sql` and `release/all_packages.sql`
+
 ## Files
 
 File | Description 

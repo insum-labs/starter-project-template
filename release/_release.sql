@@ -73,14 +73,11 @@ commit;
 -- *** DO NOT MODIFY BELOW ***
 
 
--- Views and packages will be automatically referenced between the the "AUTOREPLACE" tags below
--- Alternatively you can remove these tags and manually list all the packages and views for each release
--- Examples;
--- @..packages/pkg_emp.pks
--- @..views/v_emp.sql
-
--- AUTOREPLACE_START
--- AUTOREPLACE_END
+-- Views and packages will be automatically referenced in the files below
+-- Can generate these files from the build script
+-- Search for "list_all_files"
+@all_views.sql
+@all_packages.sql
 
 
 prompt Invalid objects

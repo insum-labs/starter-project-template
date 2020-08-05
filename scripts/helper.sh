@@ -162,6 +162,59 @@ reset_release(){
     echo "-- Release specific references to files in this folder" > $PROJECT_DIR/release/code/_run_code.sql
     echo "-- This file is automatically executed from the /release/_release.sql file" >>$PROJECT_DIR/release/code/_run_code.sql
     echo "-- \n-- Ex: @code/issue-123.sql \n" >>$PROJECT_DIR/release/code/_run_code.sql
-  fi
 } # reset_release
+
+
+
+# List all files in directory
+#
+# Parameters
+# $1: Folder (relative to root project folder) to list all the files from. Ex: views
+# $2: File (relative to root project folder) to store the list of files in: ex: release/all_views.sql
+# $3: Comma delimited list of file extensions to search for. Ex: pks,pkb. Default sql
+list_all_files(){
+
+  local FOLDER_NAME=$1
+  local OUTPUT_FILE=$2
+  local FILE_EXTENSION_ARR=$3
+
+  local RUN_HELP="get_all_files <relative_folder_name> <relative_output_file> <optional: file_extension_list>
+The following example will list all the .sql files in ./views and reference them in release/all_views.sql
+
+get_all_files views release/all_views.sql sql
+
+For packages it's useful to list the extensions in order as they should be compiled. Ex: pks,pkb to compile spec before body
+"
+  
+  # Validation
+  if [ -z "$FOLDER_NAME" ]; then
+    echo "${COLOR_RED}Error: ${COLOR_RESET} Missing folder name"
+    echo "\n$RUN_HELP"
+    return 1
+  elif [ -z "$OUTPUT_FILE" ]; then
+    echo "${COLOR_RED}Error: ${COLOR_RESET} Missing output file"
+    echo "\n$RUN_HELP"
+    return 1
+  fi
+
+  # Defaulting extensions
+  if [ -z "$FILE_EXTENSION_ARR" ]; then
+    FILE_EXTENSION_ARR="sql"
+  fi
+
+  
+  echo "-- Automated listing for $FOLDER_NAME" > $PROJECT_DIR/$OUTPUT_FILE
+  for FILE_EXT in $(echo $FILE_EXTENSION_ARR | sed "s/,/ /g"); do
+
+    echo "Listing files in: $PROJECT_DIR/$FOLDER_NAME extension: $FILE_EXT"
+    for file in $PROJECT_DIR/$FOLDER_NAME/*.$FILE_EXT; do
+    # for file in $PROJECT_DIR/$FOLDER_NAME/*.sql; do
+    # for file in $(ls $PROJECT_DIR/$FOLDER_NAME/*.sql ); do
+      echo "prompt @../$FOLDER_NAME/${file##*/}" >> $OUTPUT_FILE
+      echo "@../$FOLDER_NAME/${file##*/}" >> $OUTPUT_FILE
+    done
+  done
+
+} # list_all_files
+
 
