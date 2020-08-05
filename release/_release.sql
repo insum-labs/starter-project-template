@@ -9,9 +9,9 @@ set define '^'
 -- verify off prevents the old/new substitution message
 set verify off
 -- feedback - Displays the number of records returned by a script ON=1
-set feedback off
+set feedback on
 -- timing - Displays the time that commands take to complete
-set timing off
+set timing on
 -- display dbms_output messages
 set serveroutput on
 -- disables blank lines in code
@@ -21,7 +21,7 @@ set sqlblanklines off;
 -- Log output of release
 define logname = '' -- Name of the log file
 
-set termout off
+set termout on
 column my_logname new_val logname
 select 'release_log_'||sys_context( 'userenv', 'service_name' )|| '_' || to_char(sysdate, 'YYYY-MM-DD_HH24-MI-SS')||'.log' my_logname from dual;
 -- good to clear column names when done with them
