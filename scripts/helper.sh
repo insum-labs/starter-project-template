@@ -218,3 +218,8 @@ For packages it's useful to list the extensions in order as they should be compi
 } # list_all_files
 
 
+
+# Initializing Helper
+load_colors
+load_config
+verify_config
