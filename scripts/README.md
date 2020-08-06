@@ -3,12 +3,12 @@
 Files in this folder can be used for multiple purposes such as VSCode compilation, build scripts, etc
 
 - [Files](#files)
-  - [`helper.sh`](#helpersh)
-    - [Environment Variables](#environment-variables)
-    - [Functions](#functions)
-      - [`export_apex_app`](#export_apex_app)
-      - [`reset_release`](#reset_release)
-      - [list_all_files](#list_all_files)
+- [`helper.sh`](#helpersh)
+  - [Environment Variables](#environment-variables)
+  - [Functions](#functions)
+    - [`export_apex_app`](#export_apex_app)
+    - [`reset_release`](#reset_release)
+    - [list_all_files](#list_all_files)
 
 ## Files
 
@@ -22,13 +22,13 @@ File | Description
 
 
 
-### `helper.sh`
+## `helper.sh`
 
 Documentation below references `project root folder`. This is the base folder that the git project is located on your computer. Ex: `/Users/martin/git/insum/starter-project-template/`
 
 To load the helper functions run: `source scripts/helper.sh` (*assuming you are in the project's root folder*). This will load some environment variables and load/verify configurations for this release.
 
-#### Environment Variables
+### Environment Variables
 
 Name | Description
 --- | ---
@@ -36,9 +36,9 @@ Name | Description
 `PROJECT_DIR` | Root directory of the git repo that is associated to this file. Ex: `/Users/martin/git/insum/starter-project-template/`
 
 
-#### Functions
+### Functions
 
-##### `export_apex_app`
+#### `export_apex_app`
 
 Exports APEX applications and also splits the export file. APEX exports will be stored in `<project_root>/apex` folder. The list of applications to export is defined in `scripts/project-config.sh` variable `APEX_APP_IDS`
 
@@ -58,7 +58,7 @@ export_apex_app 1.2.3
 ```
 
 
-##### `reset_release`
+#### `reset_release`
 
 Resets the project's root release folder. Because resetting will erase everything in the `release/code` folder and reset `release/code/_run_code.sql` this function requires that an additional parameter is passed in to ensure that nothing is deleted by mistake.
 
@@ -82,7 +82,7 @@ reset_release starter-project-template
 ```
 
 
-##### list_all_files
+#### list_all_files
 
 It is very rare that you'd need to run this function on it's own as it's called as part of the [`build`](../build) process. This function will list all the files in a folder and output the results with `@../` prefix in a specified output file. This is useful when wanting to automatically compile all packages and views as part of the build.
 
