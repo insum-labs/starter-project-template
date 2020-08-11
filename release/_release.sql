@@ -4,8 +4,13 @@ clear screen
 
 whenever sqlerror exit sql.sqlcode
 
+prompt loading environment variables
+@load_env_vars.sql
+
+
 -- define - Sets the character used to prefix substitution variables
-set define '^'
+-- Note: if you change this you need to modify every reference of it in this file and any referring files
+-- set define '&'
 -- verify off prevents the old/new substitution message
 set verify off
 -- feedback - Displays the number of records returned by a script ON=1
@@ -27,48 +32,30 @@ select 'release_log_'||sys_context( 'userenv', 'service_name' )|| '_' || to_char
 -- good to clear column names when done with them
 column my_logname clear
 set termout on
-spool ^logname
-prompt Log File: ^logname
+spool &logname
+prompt Log File: &logname
 
 
 
 prompt check DB user is expected user
 declare
 begin
-  if user != 'CHANGEME_USERNAME' then
-    raise_application_error(-20001, 'Must be run as CHANGEME_USERNAME');
+  if user != '&env_schema_name' or '&env_schema_name' is null then
+    raise_application_error(-20001, 'Must be run as &env_schema_name');
   end if;
 end;
 /
 
-prompt Disable APEX Application(s)
-declare
-  c_app_id constant apex_applications.application_id%type := CHANGEME_APPLICATION_ID;
-  c_username constant varchar2(30) := user;
-begin
-  -- Note: This will NOT work in versions < APEX 18. as apex_session.create_session does not exist until then
-  -- If using APEX 5.1 or lower use oos_utils.create_session  (see https://github.com/OraOpenSource/oos-utils/blob/master/docs/oos_util_apex.md#create_session)
-  -- To install OOS Utils see: https://github.com/OraOpenSource/oos-utils
-  apex_session.create_session (
-    p_app_id => c_app_id,
-    p_page_id => 1,
-    p_username => c_username );
+-- Disable APEX apps
+@../scripts/apex_disable.sql &env_apex_app_ids
 
-  apex_util.set_application_status(
-    p_application_id => c_app_id,
-    p_application_status => 'UNAVAILABLE',
-    p_unavailable_value => 'Scheduled update of application.');
-end;
-/
-
-commit;
 
 -- *** END: HEADER SECTION ***
 
 
 -- *** Release specific tasks ***
 
-@code/_run_release_code.sql
+@code/_run_code.sql
 
 -- *** DO NOT MODIFY BELOW ***
 
@@ -114,29 +101,8 @@ end;
 /
 
 -- *** APEX ***
--- DO NOT REMOVE
-
-PROMPT *** APEX Installation ***
-
-set serveroutput on size unlimited;
-declare
-  l_workspace_id apex_workspaces.workspace_id%type;
-  l_build_option_id apex_application_build_options.build_option_id%type;
-begin
-  select workspace_id
-  into l_workspace_id
-  from apex_workspaces
-  where workspace = upper('CHANGEME_WORKSPACE');
-
-  apex_application_install.set_application_id(CHANGEME_APPLICATION_ID);
-  apex_application_install.set_schema('CHANGEME_USERNAME');
-  apex_application_install.set_workspace_id(l_workspace_id);
-  apex_application_install.generate_offset;
-
-end;
-/
-
-@../apex/fCHANGEME_APPLICATION_ID.sql
+-- Install all apex applications
+@all_apex.sql
 
 
 -- Control Build Options (optional)

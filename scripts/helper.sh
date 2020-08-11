@@ -94,9 +94,21 @@ EOL
 
 # Verifies configuration
 verify_config(){
+  # SCHEMA_NAME is required
+  if [[ $SCHEMA_NAME = "CHANGEME" ]] || [[ -z "$SCHEMA_NAME" ]]; then
+    echo -e "${COLOR_RED}SCHEMA_NAME is not configured.${COLOR_RESET} Modify $PROJECT_CONFIG_FILE"
+    exit
+  fi
+  
   # APEX_APP_IDS should be blank or list of IDs and not what is provided by default
-  if [ $APEX_APP_IDS = "CHANGEME" ]; then
+  if [[ $APEX_APP_IDS = "CHANGEME" ]]; then
     echo -e "${COLOR_RED}APEX_APP_IDS is not configured.${COLOR_RESET} Modify $PROJECT_CONFIG_FILE"
+    exit
+  fi
+
+  # APEX_WORKSPACE should be blank or list of IDs and not what is provided by default
+  if [[ $APEX_WORKSPACE = "CHANGEME" ]]; then
+    echo -e "${COLOR_RED}APEX_WORKSPACE is not configured.${COLOR_RESET} Modify $PROJECT_CONFIG_FILE"
     exit
   fi
 
@@ -202,8 +214,8 @@ For packages it's useful to list the extensions in order as they should be compi
     FILE_EXTENSION_ARR="sql"
   fi
 
-  
-  echo "-- Automated listing for $FOLDER_NAME" > $PROJECT_DIR/$OUTPUT_FILE
+  echo "-- GENERATED from build/build.sh DO NOT modify this file directly as all changes will be overwritten upon next build" > $PROJECT_DIR/$OUTPUT_FILE
+  echo "-- Automated listing for $FOLDER_NAME" >> $PROJECT_DIR/$OUTPUT_FILE
   for FILE_EXT in $(echo $FILE_EXTENSION_ARR | sed "s/,/ /g"); do
 
     echo "Listing files in: $PROJECT_DIR/$FOLDER_NAME extension: $FILE_EXT"
@@ -217,6 +229,40 @@ For packages it's useful to list the extensions in order as they should be compi
 
 } # list_all_files
 
+
+
+# Builds files required for the release
+# Should be called in build/build.sh
+# 
+# Issue: #28
+gen_release_sql(){
+  local loc_env_vars="$PROJECT_DIR/release/load_env_vars.sql"
+  local loc_apex_install_all="$PROJECT_DIR/release/all_apex.sql"
+
+  # Build helper sql file to load specific env variables into SQL*Plus session
+  echo "-- GENERATED from build/build.sh DO NOT modify this file directly as all changes will be overwritten upon next build\n\n" > $loc_env_vars
+  echo "define env_schema_name=$SCHEMA_NAME" >> $loc_env_vars
+  echo "define env_apex_app_ids=$APEX_APP_IDS" >> $loc_env_vars
+  echo "define env_apex_workspace=$APEX_WORKSPACE" >> $loc_env_vars
+  echo "" >> $loc_env_vars
+  echo "
+prompt ENV variables
+select 
+  '&env_schema_name.' env_schema_name,
+  '&env_apex_app_ids.' env_apex_app_ids,
+  '&env_apex_workspace.' env_apex_workspace
+from dual;
+
+" >> $loc_env_vars
+
+  # Build helper file to install all APEX applications
+  echo "-- GENERATED from build/build.sh DO NOT modify this file." > $loc_apex_install_all
+  echo "prompt *** APEX Installation ***" >> $loc_apex_install_all
+  for APEX_APP_ID in $(echo $APEX_APP_IDS | sed "s/,/ /g"); do
+    echo "prompt *** App: $APEX_APP_ID ***" >> $loc_apex_install_all
+    echo "@../scripts/apex_install.sql $SCHEMA_NAME $APEX_WORKSPACE $APEX_APP_ID" >> $loc_apex_install_all
+  done
+} #gen_release_sql
 
 
 # Initializing Helper

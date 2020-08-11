@@ -30,3 +30,6 @@ list_all_files packages release/all_packages.sql pks,pkb
 
 # Export APEX applications, defined in project-config.sh
 export_apex_app $VERSION
+
+# Generate release support sql files 
+gen_release_sql
