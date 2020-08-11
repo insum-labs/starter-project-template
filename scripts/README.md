@@ -12,7 +12,7 @@ Files in this folder can be used for multiple purposes such as VSCode compilatio
 
 ## Files
 
-You will need to configure both `project-config.sh` and `user-config.sh` upon first use
+**You will need to configure both `project-config.sh` and `user-config.sh` upon first use**
 
 File | Description
 --- | ---
