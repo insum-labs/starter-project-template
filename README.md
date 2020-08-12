@@ -41,7 +41,7 @@ Once [configured](#setup) the high level process to leverage this template is as
 - Run Release
   - They're various approaches on how to approach a release and tag your code. You need to read through the [release](release/) guidelines to chose an approach that is best for you
 - Clean up release
-  - Once a release is done you "clear" the release specific code (i.e. `release/code` folder will be cleared and reset). A bash script [`reset_release`](scripts/#build-a-release) is provided to do this automatically. Examples can be found in the [`release`](release/) folder.
+  - Once a release is done you "clear" the release specific code (i.e. `release/code` folder will be cleared and reset). A bash script [`reset_release`](scripts/#reset_release) is provided to do this automatically. Examples can be found in the [`release`](release/) folder.
 
 ## Setup
 
