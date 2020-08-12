@@ -3,12 +3,15 @@
 Files in this folder can be used for multiple purposes such as VSCode compilation, build scripts, etc
 
 - [Files](#files)
+- [`apex_disable.sql`](#apex_disablesql)
+- [`apex_export_app.sql`](#apex_export_appsql)
 - [`helper.sh`](#helpersh)
   - [Environment Variables](#environment-variables)
   - [Functions](#functions)
     - [`export_apex_app`](#export_apex_app)
     - [`reset_release`](#reset_release)
-    - [list_all_files](#list_all_files)
+    - [`list_all_files`](#list_all_files)
+- [`user-config.sh`](#user-configsh)
 
 ## Files
 
@@ -16,10 +19,49 @@ Files in this folder can be used for multiple purposes such as VSCode compilatio
 
 File | Description
 --- | ---
-`helper.sh` | Helper functions that all other scripts should call. Loads `config.sh`
+[`apex_export_app.sql`](#apex_export_appsql) | Exports an APEX application
+[`helper.sh`](#helpersh) | Helper functions that all other scripts should call. Loads `config.sh`
 `project-config.sh` | Project configuration
-`user-config.sh` | This file will be automatically generated when any bash script is run for the first time. It is self documenting
+[`user-config.sh`](#user-configsh) | This file will be automatically generated when any bash script is run for the first time. It is self documenting
 
+
+## `apex_disable.sql`
+
+This script will disable (sets the application's status to Unavailable). It's main purpose is to disable the application at the start of a release so users don't use it while the schema is being upgraded. By default this is called in [`../release/_release.sql`].
+
+**This script performs a `commit` at the end.**
+
+Parameter | Description
+--- | ---
+`1` | Comma delimited list of application IDs
+
+Example:
+
+```bash
+echo exit | sqlcl martin/password123@localhost:32118/xe @apex_disable.sql 100,200
+```
+
+
+
+## `apex_export_app.sql`
+
+This script requires [SQLcl](https://www.oracle.com/ca-en/database/technologies/appdev/sqlcl.html)
+
+Parameter | Description
+--- | ---
+`1` | Application ID
+`2` | *Optional* APEX Export options (ex: `-split`)
+
+
+Examples:
+
+```bash
+# Export to f100.sql
+echo exit | sqlcl martin/password123@localhost:32118/xe @apex_export_app.sql 100
+
+# Export to Application 100 as split files
+echo exit | sqlcl martin/password123@localhost:32118/xe @apex_export_app.sql 100 -split
+```
 
 
 ## `helper.sh`
@@ -82,7 +124,7 @@ reset_release starter-project-template
 ```
 
 
-#### list_all_files
+#### `list_all_files`
 
 It is very rare that you'd need to run this function on it's own as it's called as part of the [`build`](../build) process. This function will list all the files in a folder and output the results with `@../` prefix in a specified output file. This is useful when wanting to automatically compile all packages and views as part of the build.
 
@@ -103,3 +145,7 @@ list_all_files views release/all_views.sql sql
 list_all_files packages release/all_packages.sql pks,pkb
 ```
 
+## `user-config.sh`
+The first time you run any bash script an error will be displayed and a new file (`scripts/user-config.sh`) will be created. `user-config.sh` is self documented and requires some configuration before the build will work.
+
+`user-config.sh` is in the `.gitignore` file so you can store more sensitive information without it being checked in.
