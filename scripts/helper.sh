@@ -174,6 +174,7 @@ reset_release(){
     echo "-- Release specific references to files in this folder" > $PROJECT_DIR/release/code/_run_code.sql
     echo "-- This file is automatically executed from the /release/_release.sql file" >>$PROJECT_DIR/release/code/_run_code.sql
     echo "-- \n-- Ex: @code/issue-123.sql \n" >>$PROJECT_DIR/release/code/_run_code.sql
+  fi
 } # reset_release
 
 
