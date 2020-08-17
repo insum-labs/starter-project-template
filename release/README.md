@@ -10,7 +10,7 @@
 - [Tips](#tips)
   - [Run Release Manually](#run-release-manually)
 
-This folder contains base examples on how to structure release along with various options on **how** to do a release. Before proceeding you should have a [Git workflow](../README.md#git-workflows) as some of the `git` examples may need to be altered to cater towards the chosen workflow.
+This folder contains examples on how to structure release along with various options on **how** to do a release. Before proceeding you should have a [Git workflow](../README.md#git-workflows) as some of the `git` examples may need to be altered to cater towards the chosen workflow.
 
 ## Structure
 

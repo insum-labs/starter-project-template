@@ -6,12 +6,12 @@
   - [Compiling Code](#compiling-code)
   - [APEX Export](#apex-export)
 
-[Microsoft Visual Studio Code (VSC)](https://code.visualstudio.com/) is a code editor. It is the recommended editor for Logger. VSC allows for compile PL/SQL code directly from VSC (see [this blog](https://ora-00001.blogspot.ca/2017/03/using-vs-code-for-plsql-development.html)) for more information.
+[Microsoft Visual Studio Code (VSC)](https://code.visualstudio.com/) is a code editor and is recommended for most PL/SQL work. VSC can compile PL/SQL code directly from VSC (see [this blog](https://ora-00001.blogspot.ca/2017/03/using-vs-code-for-plsql-development.html)) for more information. Opening this project folder in VSC will automatically give you the ability to compile PL/SQL code and do APEX backups
 
 
 ## Setup
 
-The first time you execute this script an error will be shown and `scripts/user-config.sh` will be created with some default values. Modify the variables as necessary.
+The first time you execute this script an error will be shown and `scripts/user-config.sh` will be created with some default values. Modify the variables as necessary. You may also need to modify the [`scripts/project-config.sh`](scripts/project-config.sh) file. See the documenation in the [`scripts`](scripts) folder for more info.
 
 *Note: Windows users: Please ensure WSL or cmder is configured to run bash as terminal in VSC: [instructions](../README.md#windows-setup)*
 

@@ -11,6 +11,7 @@ Files in this folder can be used for multiple purposes such as VSCode compilatio
     - [`export_apex_app`](#export_apex_app)
     - [`reset_release`](#reset_release)
     - [`list_all_files`](#list_all_files)
+- [`project-config.sh`](#project-configsh)
 - [`user-config.sh`](#user-configsh)
 
 ## Files
@@ -22,7 +23,7 @@ File | Description
 [`apex_export_app.sql`](#apex_export_appsql) | Exports an APEX application
 [`helper.sh`](#helpersh) | Helper functions that all other scripts should call. Loads `config.sh`
 `project-config.sh` | Project configuration
-[`user-config.sh`](#user-configsh) | This file will be automatically generated when any bash script is run for the first time. It is self documenting
+[`user-config.sh`](#user-configsh) | This file will be automatically generated when any bash script is run for the first time. It is self documenting.
 
 
 ## `apex_disable.sql`
@@ -144,6 +145,9 @@ list_all_files views release/all_views.sql sql
 # Note pks is before pkb so that the specs get listed before the body
 list_all_files packages release/all_packages.sql pks,pkb
 ```
+
+## `project-config.sh`
+This file contains information about your project (such as schema name, APEX applications, etc.). It is common for all developers and changes are saved in git. **Do not** put any sensitive information in this file (`user-config.sh` is for sensitive information).
 
 ## `user-config.sh`
 The first time you run any bash script an error will be displayed and a new file (`scripts/user-config.sh`) will be created. `user-config.sh` is self documented and requires some configuration before the build will work.
