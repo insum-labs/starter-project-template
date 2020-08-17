@@ -31,22 +31,22 @@ This template contains a lot of features that may help with your project.
 
 Once [configured](#setup) the high level process to leverage this template is as follows:
 
-- Develop
+- **Develop**
   - Packages go in [`packages`](packages/), views go into [`views`](views/), etc
   - Release specific / non re-runnable code goes into the [`release/code`](release/code) folder (see the [`release`](release) folder for more info on how to name files and list them in your release)
     - Each release will start at exactly the same point: [`release/_release.sql`](release/_release.sql). If automating your releases this provides a consistent script to run which can reduce any manual intervention.
-- Build Release
+- **Build Release**
   - Once ready to promote your code run `./build/build.sh <version>`. This will do things such as export your APEX application(s), scrape the views/packages folder for all the files, etc.
     - More information about the build process is available in the [`build`](build/) folder
-- Run Release
+- **Run Release**
   - They're various approaches on how to approach a release and tag your code. You need to read through the [release](release/) guidelines to chose an approach that is best for you
-- Clean up release
+- **Clean up Release**
   - Once a release is done you "clear" the release specific code (i.e. `release/code` folder will be cleared and reset). A bash script [`reset_release`](scripts/#reset_release) is provided to do this automatically. Examples can be found in the [`release`](release/) folder.
 
 ## Setup
 
-- [`scripts/project-config.sh`]: Configure APEX settings
-- `scripts/user-config.sh`: The first time any bash script is executed this file will be generated and needs to be modified with user specific settings. By default this file will not be committed to your git repo as it contains user specific settings and database passwords
+- [`scripts/project-config.sh`](scripts/project-config.sh): Configure APEX settings
+- [`scripts/user-config.sh`](scripts/user-config.sh): The first time any bash script is executed this file will be generated and needs to be modified with user specific settings. By default this file will not be committed to your git repo as it contains user specific settings and database passwords
 - Remove directories that don't apply to your project (ie. data, templates, etc...)
 
 
@@ -57,12 +57,12 @@ The default folder structure (listed below) provides a set of common folders mos
 | Folder | Description |
 |:--|--|
 | [`.vscode`](.vscode/) | [Visual Studio Code](https://code.visualstudio.com/) specific settings
-| apex | Application exports
+| [`apex`](apex/) | Application exports
 | [`data`](data/) | Conversion and seed data scripts
 | docs | Project documents 
 | lib | Installation libraries ([OOS Utils](https://github.com/OraOpenSource/oos-utils), [Logger](https://github.com/OraOpenSource/Logger), etc..)
 | [`release`](release/) | Current release scripts for changes and patching. Documentation is provided on various ways to do releases.
-| scripts | Usually re-runable scripts referenced by a release script
+| [`scripts`](scripts/) | Usually re-runable scripts referenced by a release script
 | packages | Packages (`.pks` & `.pkb`), (*If you have triggers, stand alone procedures or functions it's recommend to create a new folder for them*)
 | synonyms | Application Synonyms
 | triggers | Application Triggers
