@@ -90,7 +90,7 @@ order by object_name
 
 
 -- Load any re-runnable data scripts
--- ex: @../data/data_my_table.sql
+@all_data.sql
 
 
 -- This needs to be in place after trigger generation as some triggers follow the generated triggers above

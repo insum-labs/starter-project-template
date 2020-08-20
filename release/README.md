@@ -2,6 +2,7 @@
 
 - [Structure](#structure)
   - [`_release.sql`](#_releasesql)
+  - [`all_....sql` files](#all_sql-files)
   - [The `code` folder](#the-code-folder)
 - [Release Process](#release-process)
   - [Concept 1: Code is tagged each time it is run in Production](#concept-1-code-is-tagged-each-time-it-is-run-in-production)
@@ -22,6 +23,19 @@ Some files are provided by default to help guide your release process
 Example release script. This is the only file that will be run for each release. Inside `_release.sql` it references other files that are required for the release. By having a single consistent file for each release it helps simplify release scripts if using automated scripting tools.  
 
 You must review this file and modify it accordingly for your project needs. Again, every project is different and it's expected that this file should be modified to meet your project's needs. 
+
+### `all_....sql` files
+
+They're several `all*.sql` files which are described below. All of the files that are flagged as auto generated are generated during the [build](../build) process.
+
+File | Auto Generated | Description
+--- | --- | ---
+[`all_apex.sql`](all_apex.sql) | Yes | Will install all the APEX applications as defined in [`scripts/project-config.sh`](../scripts/project-config.sh)
+[`all_data.sql`](all_data.sql) | No | Runs all the re-runnable data scripts. You must manually add references to this file as order matters
+[`all_packages.sql`](all_packages.sql) | Yes | References all the packages in the `packages` folder. By default this will run all the `.pks` files first then the `pkb` files next
+[`all_views.sql`](all_views.sql) | Yes | References all the views in the `views` folder
+[`load_env_vars.sql`](load_env_vars.sql) | Yes | Loads some of the environment variables, defined in `[`scripts/project-config.sh`](../scripts/project-config.sh), into SQL session
+
 
 
 ### The `code` folder
