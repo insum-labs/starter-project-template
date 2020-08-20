@@ -34,7 +34,7 @@ File | Auto Generated | Description
 [`all_data.sql`](all_data.sql) | No | Runs all the re-runnable data scripts. You must manually add references to this file as order matters
 [`all_packages.sql`](all_packages.sql) | Yes | References all the packages in the `packages` folder. By default this will run all the `.pks` files first then the `pkb` files next
 [`all_views.sql`](all_views.sql) | Yes | References all the views in the `views` folder
-[`load_env_vars.sql`](load_env_vars.sql) | Yes | Loads some of the environment variables, defined in `[`scripts/project-config.sh`](../scripts/project-config.sh), into SQL session
+[`load_env_vars.sql`](load_env_vars.sql) | Yes | Loads some of the environment variables, defined in [`scripts/project-config.sh`](../scripts/project-config.sh), into SQL session
 
 
 
