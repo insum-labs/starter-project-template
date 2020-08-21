@@ -20,9 +20,8 @@ source $SCRIPT_DIR/../scripts/helper.sh
 
 
 echo -e "*** Listing all views and packages ***\n"
-list_all_files views release/all_views.sql sql
-list_all_files packages release/all_packages.sql pks,pkb
-
+list_all_files views release/all_views.sql $EXT_VIEW
+list_all_files packages release/all_packages.sql $EXT_PACKAGE_SPEC,$EXT_PACKAGE_BODY
 
 # TODO #10 APEX Nitro configuration
 # echo -e "*** APEX Nitro Publish ***\n"
