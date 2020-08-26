@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "compile: CHANGEME(.vscode/tasks.json)",
+      "label": "compile: CHANGEME_TASKLABEL",
       "type": "shell",
       "command": ".vscode/scripts/run_sql.sh",
       "args": [
@@ -24,7 +24,7 @@
     },
     // EXPORT apex applications
     {
-      "label": "apex export: CHANGEME(.vscode/tasks.json)",
+      "label": "apex export: CHANGEME_TASKLABEL",
       "type": "shell",
       "command": ".vscode/scripts/apex_export.sh",
       "args": [],

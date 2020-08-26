@@ -17,7 +17,9 @@ The first time you execute this script an error will be shown and `scripts/user-
 
 ### `tasks.json`
 
-This file defines the VSCode task. The only thing that needs to be modified is the to define a task name. Search the file for `CHANGEME` and replace with the project name.
+This file defines the VSCode task. The first time that anything bash script is run in this template (ex: build, compile, apex export, etc) the task names will automatically be updated to reflect the root project's folder name.
+
+For example if the project is stored in `~/git/my-project` **after** the first bash script is run (see previous paragraph) the task names will look like: `compile: my-project` etc.
 
 ## Tasks
 

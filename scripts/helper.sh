@@ -266,7 +266,23 @@ from dual;
 } #gen_release_sql
 
 
-# Initializing Helper
-load_colors
-load_config
-verify_config
+
+# Initialize
+init(){
+  local PROJECT_DIR_FOLDER_NAME=$(basename $PROJECT_DIR)
+  local VSCODE_TASK_FILE=$PROJECT_DIR/.vscode/tasks.json
+  
+  # #36 Change the VSCode Labels
+  # See: https://unix.stackexchange.com/questions/13711/differences-between-sed-on-mac-osx-and-other-standard-sed/131940#131940
+  sed -i -bak "s/CHANGEME_TASKLABEL/$PROJECT_DIR_FOLDER_NAME/g" $VSCODE_TASK_FILE
+  # Remove backup versin of file
+  rm $VSCODE_TASK_FILE-bak
+
+
+  # Initializing Helper
+  load_colors
+  load_config
+  verify_config
+}
+
+init
