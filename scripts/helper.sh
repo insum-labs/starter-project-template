@@ -267,6 +267,67 @@ from dual;
 
 
 
+# #36 Create new files quickly based on template files
+# 
+# See scripts/project-config.sh on how to define the various object types
+# 
+# Actions:
+# - Create a new file in defined destination folder
+# - Based on template
+# - Replace all referneces to CHANGEME with the object name
+#
+# Parameters
+# $1 Object type
+# $2 Object Name
+gen_object(){
+  # Parameters
+  local p_object_type=$1
+  local p_object_name=$2
+
+  # Loop variables
+  local object_type_arr
+  local object_type
+  local object_template
+  local object_dest_folder
+  local object_dest_file
+
+  # OBJECT_FILE_TEMPLATE_MAP is defined in scripts/project-config.sh
+  for object_type in $(echo $OBJECT_FILE_TEMPLATE_MAP | sed "s/,/ /g"); do
+
+    object_type_arr=(`echo "$object_type" | sed 's/:/ /g'`)
+
+    # In bash arrays start at 0 whereas in zsh they start at 1
+    # Only way to make array reference compatible with both is to specify the offset and length
+    # See: https://stackoverflow.com/questions/50427449/behavior-of-arrays-in-bash-scripting-and-zsh-shell-start-index-0-or-1/50433774
+    object_type=${object_type_arr[@]:0:1}
+    object_template=${object_type_arr[@]:1:1}
+    object_file_exts=${object_type_arr[@]:2:1}
+    object_dest_folder=${object_type_arr[@]:3:1}
+
+    if [[ "$p_object_type" == "$object_type" ]]; then
+
+      for file_ext in $(echo $object_file_exts | sed "s/;/ /g"); do
+        object_dest_file=$PROJECT_DIR/$object_dest_folder/$p_object_name.$file_ext
+
+        if [[ -f $object_dest_file ]]; then
+          echo "${COLOR_ORANGE}File already exists:${COLOR_RESET} $object_dest_file"
+        else
+          cp $object_template.$file_ext $object_dest_file
+          sed -i -bak "s/CHANGEME/$p_object_name/g" $object_dest_file
+          # Remove backup versin of file
+          rm $object_dest_file-bak 
+          echo "Created: $object_dest_file"
+        fi
+      done
+
+      break # No longer need to loop through other definitions
+    fi
+
+  done # OBJECT_FILE_TEMPLATE_MAP
+
+} # gen_object
+
+
 # Initialize
 init(){
   local PROJECT_DIR_FOLDER_NAME=$(basename $PROJECT_DIR)

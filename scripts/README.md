@@ -9,8 +9,9 @@ Files in this folder can be used for multiple purposes such as VSCode compilatio
   - [Environment Variables](#environment-variables)
   - [Functions](#functions)
     - [`export_apex_app`](#export_apex_app)
-    - [`reset_release`](#reset_release)
+    - [`gen_object`](#gen_object)
     - [`list_all_files`](#list_all_files)
+    - [`reset_release`](#reset_release)
 - [`project-config.sh`](#project-configsh)
 - [`user-config.sh`](#user-configsh)
 
@@ -100,6 +101,52 @@ export_apex_app
 export_apex_app 1.2.3
 ```
 
+#### `gen_object`
+
+Generates a file based on template file.  (see example below for more description)
+
+**Parameters**
+Position | Required | Description
+--- | --- | ---
+`$1` | Required | Object type. By default this is `package, view, data`)
+`$2` | Required | Object name. Will be new file name along with replacing all reference of `CHANGEME` in file
+
+
+**Example**
+
+Suppose you wanted to quickly create a new package (`pkg_emp`). By default in the [`templates`](../templates) folder there exists two files [`template_pkg.pks`](../templates/template_pkg.pks) and [`template_pkg.pkb`](../templates/template_pkg.pkb). In the past you'd need to copy these two files, rename them, then modify the `CHANGEME`s and replace with your package name. Now you can simply:
+
+```bash
+source ./scripts/helper.sh
+gen_object package pkg_emp
+```
+
+This will then automatically create two new files `packages/pkg_emp.pks` and `packages/pkg_emp.pkb`. In VSCode there's also a task for this to avoid any command line
+
+**Configuration**
+
+To modify the different types of available templates modify [`scripts/project-config.sh`](project-config.sh) and look for `OBJECT_FILE_TEMPLATE_MAP` (it is self documenting)
+
+#### `list_all_files`
+
+It is very rare that you'd need to run this function on it's own as it's called as part of the [`build`](../build) process. This function will list all the files in a folder and output the results with `@../` prefix in a specified output file. This is useful when wanting to automatically compile all packages and views as part of the build.
+
+**Parameters**
+Position | Required | Description
+--- | --- | ---
+`$1` | Required | Folder that you want to list files from. **Note:** this folder is the folder name **relative** to the project's root folder. I.e. for `views` you would specify `views` and **not** `/Users/martin/git/insum/starter-project-template/views`
+`$2` | Required | File to store results in
+`$3` | Optional | Comma delimited list of file extensions to search for. Default: `sql`. Note the order of the list matters. For example if `pks,pkb` all the `pks` (spec) files will be listed first then the `pkb` (body) files will be listed second.
+
+**Example**
+```bash
+# Generate all the views
+list_all_files views release/all_views.sql sql
+
+# Generate all the packages
+# Note pks is before pkb so that the specs get listed before the body
+list_all_files packages release/all_packages.sql pks,pkb
+```
 
 #### `reset_release`
 
@@ -122,28 +169,6 @@ Error:  confirmation directory missing or not matching. Run: reset_release start
 # Correct run
 
 reset_release starter-project-template
-```
-
-
-#### `list_all_files`
-
-It is very rare that you'd need to run this function on it's own as it's called as part of the [`build`](../build) process. This function will list all the files in a folder and output the results with `@../` prefix in a specified output file. This is useful when wanting to automatically compile all packages and views as part of the build.
-
-**Parameters**
-Position | Required | Description
---- | --- | ---
-`$1` | Required | Folder that you want to list files from. **Note:** this folder is the folder name **relative** to the project's root folder. I.e. for `views` you would specify `views` and **not** `/Users/martin/git/insum/starter-project-template/views`
-`$2` | Required | File to store results in
-`$3` | Optional | Comma delimited list of file extensions to search for. Default: `sql`. Note the order of the list matters. For example if `pks,pkb` all the `pks` (spec) files will be listed first then the `pkb` (body) files will be listed second.
-
-**Example**
-```bash
-# Generate all the views
-list_all_files views release/all_views.sql sql
-
-# Generate all the packages
-# Note pks is before pkb so that the specs get listed before the body
-list_all_files packages release/all_packages.sql pks,pkb
 ```
 
 ## `project-config.sh`

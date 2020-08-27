@@ -35,6 +35,40 @@
       },
       "options": {},
       "problemMatcher": []
+    },
+    {
+      "label": "generate object: CHANGEME",
+      "type": "shell",
+      "command": ".vscode/scripts/gen_object.sh",
+      "args": [
+        "${input:newObjectType}",
+        "${input:newObjectName}"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "options": {},
+      "problemMatcher": []
+    },
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "newObjectType",
+      "description": "Testing types to include",
+      // Note: these options must match what's in scripts/project-config.sh
+      "options": [
+        "package",
+        "view",
+        "data"
+      ]
+    },
+    {
+      "type": "promptString",
+      "id": "newObjectName",
+      "description": "Object name"
     }
   ]
 }

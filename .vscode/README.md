@@ -3,8 +3,9 @@
 - [Setup](#setup)
   - [`tasks.json`](#tasksjson)
 - [Tasks](#tasks)
-  - [Compiling Code](#compiling-code)
   - [APEX Export](#apex-export)
+  - [Compiling Code](#compiling-code)
+  - [Generate Object](#generate-object)
 
 [Microsoft Visual Studio Code (VSC)](https://code.visualstudio.com/) is a code editor and is recommended for most PL/SQL work. VSC can compile PL/SQL code directly from VSC (see [this blog](https://ora-00001.blogspot.ca/2017/03/using-vs-code-for-plsql-development.html)) for more information. Opening this project folder in VSC will automatically give you the ability to compile PL/SQL code and do APEX backups
 
@@ -27,10 +28,15 @@ Tasks can be executed with `⌘+shift+B` and selecting the desired task.
 
 ![Task Compile Demo](img/task-compile.gif)
 
-### Compiling Code
-
-To compile the current file you're editing execute `compile: <project name>` task.
-
 ### APEX Export
 
 If you want to export your APEX applications (defined in `scripts/project-config.sh`) execute the `apex export: <project name>`
+
+### Compiling Code
+
+To compile the current file you're editing execute the `compile: <project name>` task.
+
+
+### Generate Object
+
+To quickly create a new package, view, or data file execute the `generate object: <project name>` task.
