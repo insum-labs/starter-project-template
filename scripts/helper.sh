@@ -317,6 +317,9 @@ gen_object(){
           # Remove backup versin of file
           rm $object_dest_file-bak 
           echo "Created: $object_dest_file"
+
+          # Open file in code
+          code $object_dest_file
         fi
       done
 
