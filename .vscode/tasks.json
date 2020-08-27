@@ -37,7 +37,7 @@
       "problemMatcher": []
     },
     {
-      "label": "generate object: CHANGEME",
+      "label": "generate object: CHANGEME_TASKLABEL",
       "type": "shell",
       "command": ".vscode/scripts/gen_object.sh",
       "args": [
