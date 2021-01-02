@@ -331,6 +331,98 @@ gen_object(){
 } # gen_object
 
 
+# Merge a SQL file into one file
+# Copied and modified from: https://github.com/insum-labs/conference-manager/blob/master/release/build_release_script.sh
+#
+# This script received a .sql file as input and will create an output file
+# that can be processed by SQL Workshop on apex.oracle.com
+# This means that single commands can be executed as they are (for example 
+# alter, create table, update, inserts, etc..).
+# When a script is found with the form @../file, ie:
+# @../views/ks_users_v.sql
+# It will be "expanded" into the output file (defined by OUT_FILE)
+# 
+# Note this will recursively expand files. 
+# For example if calling "merge_sql_files _release.sql merged_release.sql" and:
+# _release.sql references _all_packages.sql
+# and _all_packages.sql references pkg_emp.pks
+# Then both _all_packages.sql and pkg_emp.pks will be exampled at the the points they were referenced in each file
+#
+# Issue: #42
+# Example:
+# source helper.sh
+# merge_sql_files all_packages.sql merged_all_packages.sql
+# 
+# Parameters
+# $1 From/In File
+# $2 To/Out File
+merge_sql_files(){
+  local IN_FILE=$1
+  local OUT_FILE=$2
+
+  # Logging function. Calling "logger" so there's no name conflict as "log" is a function in bash
+  logger() {
+    echo "`date`: $1"
+  } # logger
+
+  #*****************************************************************************
+  # Expand Script Lines or output regular lines
+  # Parameters
+  # $1 FILE_LINE: This is the current line from the $IN_FILE
+  #******************************************************************************
+  process_line (){
+    local FILE_LINE=$1
+
+    # logger "Is $1 a script?"
+    # ${1:1} https://stackoverflow.com/questions/30197247/using-11-in-bash
+    # In this case it's removing the "@" from each line in the script
+
+    if [ -f "${FILE_LINE:1}" ]
+    then
+      logger "Expanding file: ${FILE_LINE:1}"
+      echo "-- $FILE_LINE" >> $OUT_FILE
+      
+      # Recursively open each file as they themselves may reference other files
+      process_file ${FILE_LINE:1}
+      
+      # Print blank lines
+      echo >> $OUT_FILE
+      echo >> $OUT_FILE
+    else
+      echo "$line" >> $OUT_FILE
+    fi
+
+  } # process_line
+
+
+  # Will loop over a file and process each line
+  # 
+  # Note: process_line will recursively call this function
+  # 
+  # Parameters
+  # $1 file_name
+  process_file(){
+    echo "Processing: $file_name"
+    local file_name=$1
+
+    while IFS='' read -r line || [[ -n "$line" ]]; do
+      process_line $line
+    done < "$file_name"
+  }
+
+
+  logger "Procesing $IN_FILE into $OUT_FILE"
+
+  echo "-- =============================================================================" > $OUT_FILE
+  echo "-- ==========================  Full $IN_FILE file" >> $OUT_FILE
+  echo "-- =============================================================================" >> $OUT_FILE
+  echo -n >> $OUT_FILE
+
+  # Start merging the original file which will recursively find other files
+  process_file $IN_FILE
+} # merge_sql_files
+
+
 # Initialize
 init(){
   local PROJECT_DIR_FOLDER_NAME=$(basename $PROJECT_DIR)
