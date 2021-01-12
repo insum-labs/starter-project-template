@@ -3,31 +3,36 @@ set define off;
 PROMPT CHANGE_ME data
 
 declare
-  type rec_data is varray(CHANGEME) of varchar2(4000);
-  type tab_data is table of rec_data index by pls_integer;
-  l_data tab_data;
-  l_row CHANGE_ME%rowtype;
+  l_json clob;
 begin
 
-  -- Column order:
-  -- CHANGEME
-  -- 1: CHANGE_ME_code
-  -- 2: CHANGE_ME_name
-  -- 3: CHANGE_ME_seq
+  -- Load data in JSON object
+  l_json := q'!
+[
+  {
+    "CHANGE_ME_code": "CHANGEME",
+    "CHANGE_ME_name": "CHANGEME",
+    "CHANGE_ME_seq": 1
+  }
+]
+!';
 
-  -- Template
-  -- l_data(l_data.count + 1) := rec_data('CHANGEME', 'CHANGEME', 1, ...);
 
-
-  for i in 1..l_data.count loop
-    l_row.CHANGE_ME_code := l_data(i)(1);
-    l_row.CHANGE_ME_name := l_data(i)(2);
-    l_row.CHANGE_ME_seq := l_data(i)(3);
-
+  for data in (
+    select *
+    from json_table(l_json, '$[*]' columns
+      CHANGE_ME_code varchar2(4000) path '$.CHANGE_ME_code',
+      CHANGE_ME_name varchar2(4000) path '$.CHANGE_ME_name',
+      CHANGE_ME_seq number path '$.CHANGE_ME_seq'
+    )
+  ) loop
+    
+    -- Note: looping over each entry to make it easier to debug in case one entry is invalid
+    -- If performance is an issue can move the loop's select statement into the merge statement
     merge into CHANGE_ME dest
       using (
         select
-          l_row.CHANGE_ME_code CHANGE_ME_code
+          data.CHANGE_ME_code CHANGE_ME_code
         from dual
       ) src
       on (1=1
@@ -38,8 +43,8 @@ begin
         set
           -- Don't update the value as it's probably a key/secure value
           -- Deletions are handled above
-          dest.CHANGE_ME_name = l_row.CHANGE_ME_name,
-          dest.CHANGE_ME_seq = l_row.CHANGE_ME_seq
+          dest.CHANGE_ME_name = data.CHANGE_ME_name,
+          dest.CHANGE_ME_seq = data.CHANGE_ME_seq
     when not matched then
       insert (
         CHANGE_ME_code,
@@ -48,10 +53,10 @@ begin
         created_on,
         created_by)
       values(
-        l_row.CHANGE_ME_code,
-        l_row.CHANGE_ME_name,
-        l_row.CHANGE_ME_seq,
-        sysdate,
+        data.CHANGE_ME_code,
+        data.CHANGE_ME_name,
+        data.CHANGE_ME_seq,
+        current_timestamp,
         'SYSTEM')
     ;
   end loop;
