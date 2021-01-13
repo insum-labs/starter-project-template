@@ -3,7 +3,7 @@ set define off;
 PROMPT CHANGE_ME data
 
 declare
-  type rec_data is varray(CHANGEME) of varchar2(4000);
+  type rec_data is varray(3) of varchar2(4000);
   type tab_data is table of rec_data index by pls_integer;
   l_data tab_data;
   l_row CHANGE_ME%rowtype;
@@ -51,7 +51,7 @@ begin
         l_row.CHANGE_ME_code,
         l_row.CHANGE_ME_name,
         l_row.CHANGE_ME_seq,
-        sysdate,
+        current_timestamp,
         'SYSTEM')
     ;
   end loop;

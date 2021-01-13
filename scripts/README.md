@@ -12,6 +12,7 @@ Files in this folder can be used for multiple purposes such as VSCode compilatio
     - [`gen_object`](#gen_object)
     - [`list_all_files`](#list_all_files)
     - [`reset_release`](#reset_release)
+    - ['merge_sql_files`](#merge_sql_files)
 - [`project-config.sh`](#project-configsh)
 - [`user-config.sh`](#user-configsh)
 
@@ -169,6 +170,56 @@ Error:  confirmation directory missing or not matching. Run: reset_release start
 # Correct run
 
 reset_release starter-project-template
+```
+
+
+#### 'merge_sql_files`
+
+Merges multiple files into a single file. This is useful when you can't reference multiple files easily in a release (ex: deploying to apex.oracle.com).
+This will keep any existing commands (ex `alter table, update, etc`) but will expand any line that starts with `@s`.
+
+**Parameters**
+Position | Required | Description
+--- | --- | ---
+`$1` | Required | "root" input file
+`$2` | Required | Output (merged) file
+
+**Example**
+
+Suppose your file structure is as follows:
+
+```
+/release
+  _release.sql
+    update config set release_date = sysdate;
+    @all_packages.sql
+  @all_packages.sql
+    @..packages/pkg_emp.pks
+    @..packages.pkg_emp.pkb
+```
+
+If you then run:
+
+```bash
+cd /release
+merge_sql_files _release.sql merged_release.sql
+```
+
+It will then create `merged_release.sql` with the following:
+```sql
+-- _release.sql
+update config set release_date = sysdate;
+-- 
+-- referencing @all_packages.sql
+-- 
+-- referencing @..packages/pkg_emp.pks
+-- 
+create or replace package pkg_emp
+...
+-- 
+-- referencing @..packages/pkg_emp.pkb
+create or replace package body pkg_emp
+...
 ```
 
 ## `project-config.sh`

@@ -62,7 +62,8 @@
       "options": [
         "package",
         "view",
-        "data"
+        "data_array",
+        "data_json"
       ]
     },
     {
