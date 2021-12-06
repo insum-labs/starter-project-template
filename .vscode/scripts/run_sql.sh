@@ -1,3 +1,4 @@
+#!/bin/bash
 # Env variables $1, $2, etc are from the tasks.json args array
 
 # Directory of this file
