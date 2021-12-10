@@ -8,11 +8,26 @@
       "type": "shell",
       "command": ".vscode/scripts/run_sql.sh",
       "args": [
-        // "${relativeFile}",
-        // "${file}"
         // Escaped double quotes are required to make compatible with Cmder in Windows
         "\"${relativeFile}\"",
         "\"${file}\""
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "options": {},
+      "problemMatcher": []
+    },
+    // Run utPLSQL Test
+    {
+      "label": "utPLSQL: Run Current Test",
+      "type": "shell",
+      "command": ".vscode/scripts/run_utplsql.sh",
+      "args": [
+        // Escaped double quotes are required to make compatible with Cmder in Windows
+        "\"${fileBasenameNoExtension}\""
       ],
       "group": "build",
       "presentation": {
