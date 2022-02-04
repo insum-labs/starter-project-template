@@ -142,7 +142,7 @@ export_apex_app(){
       # In order to support the various versions of sed need to add the "-bak"
       # See: https://unix.stackexchange.com/questions/13711/differences-between-sed-on-mac-osx-and-other-standard-sed/131940#131940
       echo "APEX_APP_VERSION: $APEX_APP_VERSION detected, injecting into APEX application"
-      sed -i -bak "s/%RELEASE_VERSION%/$VERSION/" apex/f$APEX_APP_ID.sql
+      sed -i-bak "s/%RELEASE_VERSION%/$VERSION/" apex/f$APEX_APP_ID.sql
       # Remove the backup version of file (see above)
       rm apex/f$APEX_APP_ID.sql-bak
     fi
@@ -313,7 +313,7 @@ gen_object(){
           echo "${COLOR_ORANGE}File already exists:${COLOR_RESET} $object_dest_file"
         else
           cp $object_template.$file_ext $object_dest_file
-          sed -i -bak "s/CHANGEME/$p_object_name/g" $object_dest_file
+          sed -i-bak "s/CHANGEME/$p_object_name/g" $object_dest_file
           # Remove backup versin of file
           rm $object_dest_file-bak 
           echo "Created: $object_dest_file"
@@ -430,7 +430,7 @@ init(){
   
   # #36 Change the VSCode Labels
   # See: https://unix.stackexchange.com/questions/13711/differences-between-sed-on-mac-osx-and-other-standard-sed/131940#131940
-  sed -i -bak "s/CHANGEME_TASKLABEL/$PROJECT_DIR_FOLDER_NAME/g" $VSCODE_TASK_FILE
+  sed -i-bak "s/CHANGEME_TASKLABEL/$PROJECT_DIR_FOLDER_NAME/g" $VSCODE_TASK_FILE
   # Remove backup versin of file
   rm $VSCODE_TASK_FILE-bak
 
