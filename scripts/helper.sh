@@ -134,6 +134,7 @@ export_apex_app(){
     # Export single file app
     # Need to start in root project dicetory as export will automatically store files in the apex folder
     cd $PROJECT_DIR
+    echo "PROJECT_DIR=$PROJECT_DIR"
 
     echo exit | $SQLCL $DB_CONN @scripts/apex_export.sql $APEX_APP_ID
     
@@ -142,13 +143,14 @@ export_apex_app(){
       # In order to support the various versions of sed need to add the "-bak"
       # See: https://unix.stackexchange.com/questions/13711/differences-between-sed-on-mac-osx-and-other-standard-sed/131940#131940
       echo "APEX_APP_VERSION: $APEX_APP_VERSION detected, injecting into APEX application"
-      sed -i -bak "s/%RELEASE_VERSION%/$VERSION/" apex/f$APEX_APP_ID.sql
+      echo "APEX_APP_ID=$APEX_APP_ID"
+      
+      sed - i-bak "s/%RELEASE_VERSION%/$VERSION/" apex/f$APEX_APP_ID.sql
       # Remove the backup version of file (see above)
       rm apex/f$APEX_APP_ID.sql-bak
     fi
-
     # Export split app (or APEXcl)
-    echo exit | $SQLCL $DB_CONN @scripts/apex_export.sql $APEX_APP_ID -split
+    # echo exit | $SQLCL $DB_CONN @scripts/apex_export.sql $APEX_APP_ID -split
 
   done
 }
@@ -219,12 +221,12 @@ For packages it's useful to list the extensions in order as they should be compi
   echo "-- Automated listing for $FOLDER_NAME" >> $PROJECT_DIR/$OUTPUT_FILE
   for FILE_EXT in $(echo $FILE_EXTENSION_ARR | sed "s/,/ /g"); do
 
-    echo "Listing files in: $PROJECT_DIR/$FOLDER_NAME extension: $FILE_EXT"
-    for file in $PROJECT_DIR/$FOLDER_NAME/*.$FILE_EXT; do
+    echo "Listing files in: $PROJECT_DIR/$FOLDER_NAME extension: $FILE_EXT"    
+    for file in $PROJECT_DIR//$FOLDER_NAME//*.$FILE_EXT; do
     # for file in $PROJECT_DIR/$FOLDER_NAME/*.sql; do
     # for file in $(ls $PROJECT_DIR/$FOLDER_NAME/*.sql ); do
-      echo "prompt @../$FOLDER_NAME/${file##*/}" >> $OUTPUT_FILE
-      echo "@../$FOLDER_NAME/${file##*/}" >> $OUTPUT_FILE
+      echo "prompt @../$FOLDER_NAME/${file##*/}" >> $PROJECT_DIR/$OUTPUT_FILE
+      echo "@../$FOLDER_NAME/${file##*/}" >> $PROJECT_DIR/$OUTPUT_FILE
     done
   done
 
@@ -239,7 +241,6 @@ For packages it's useful to list the extensions in order as they should be compi
 gen_release_sql(){
   local loc_env_vars="$PROJECT_DIR/release/load_env_vars.sql"
   local loc_apex_install_all="$PROJECT_DIR/release/all_apex.sql"
-
   # Build helper sql file to load specific env variables into SQL*Plus session
   echo "-- GENERATED from build/build.sh DO NOT modify this file directly as all changes will be overwritten upon next build\n\n" > $loc_env_vars
   echo "define env_schema_name=$SCHEMA_NAME" >> $loc_env_vars
@@ -313,7 +314,7 @@ gen_object(){
           echo "${COLOR_ORANGE}File already exists:${COLOR_RESET} $object_dest_file"
         else
           cp $object_template.$file_ext $object_dest_file
-          sed -i -bak "s/CHANGEME/$p_object_name/g" $object_dest_file
+          sed -i-bak "s/CHANGEME/$p_object_name/g" $object_dest_file
           # Remove backup versin of file
           rm $object_dest_file-bak 
           echo "Created: $object_dest_file"
@@ -428,9 +429,10 @@ init(){
   local PROJECT_DIR_FOLDER_NAME=$(basename $PROJECT_DIR)
   local VSCODE_TASK_FILE=$PROJECT_DIR/.vscode/tasks.json
   
+
   # #36 Change the VSCode Labels
   # See: https://unix.stackexchange.com/questions/13711/differences-between-sed-on-mac-osx-and-other-standard-sed/131940#131940
-  sed -i -bak "s/CHANGEME_TASKLABEL/$PROJECT_DIR_FOLDER_NAME/g" $VSCODE_TASK_FILE
+  sed -i-bak "s/CHANGEME_TASKLABEL/$PROJECT_DIR_FOLDER_NAME/g" $VSCODE_TASK_FILE
   # Remove backup versin of file
   rm $VSCODE_TASK_FILE-bak
 

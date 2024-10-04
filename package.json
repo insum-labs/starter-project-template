@@ -1,0 +1,25 @@
+{
+  "name": "apex-starter",
+  "version": "1.0.0",
+  "description": "apex starter project template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/insumsolutions/internal_insum/project-templates/apex-starter-project-template.git"
+  },
+  "keywords": [
+    "apex",
+    "starter",
+    "project",
+    "template"
+  ],
+  "author": "Gino Suarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/insumsolutions/internal_insum/project-templates/apex-starter-project-template/issues"
+  },
+  "homepage": "https://gitlab.com/insumsolutions/internal_insum/project-templates/apex-starter-project-template#readme"
+}
