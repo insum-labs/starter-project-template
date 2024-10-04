@@ -65,6 +65,7 @@ end;
 -- Search for "list_all_files"
 @all_views.sql
 @all_packages.sql
+@all_triggers.sql
 
 
 prompt Invalid objects
